@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>Shankara Statistics</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="assets/img/svasthya.png" rel="icon">
+  <!-- Google Fonts -->
+  <link
+    href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Jost:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+    rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
+  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="assets/css/style.css" rel="stylesheet">
+
+  <script src="https://www.gstatic.com/firebasejs/8.6.2/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.6.2/firebase-database.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.6.2/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.6.2/firebase-analytics.js"></script>
+
+  <script src="https://www.gstatic.com/firebasejs/8.6.2/firebase-messaging.js"></script>
+  <script>(g => { var h, a, k, p = "The Google Maps JavaScript API", c = "google", l = "importLibrary", q = "__ib__", m = document, b = window; b = b[c] || (b[c] = {}); var d = b.maps || (b.maps = {}), r = new Set, e = new URLSearchParams, u = () => h || (h = new Promise(async (f, n) => { await (a = m.createElement("script")); e.set("libraries", [...r] + ""); for (k in g) e.set(k.replace(/[A-Z]/g, t => "_" + t[0].toLowerCase()), g[k]); e.set("callback", c + ".maps." + q); a.src = `https://maps.${c}apis.com/maps/api/js?` + e; d[q] = f; a.onerror = () => h = n(Error(p + " could not load.")); a.nonce = m.querySelector("script[nonce]")?.nonce || ""; m.head.append(a) })); d[l] ? console.warn(p + " only loads once. Ignoring:", g) : d[l] = (f, ...n) => r.add(f) && u().then(() => d[l](f, ...n)) })
+      ({ key: "AIzaSyAdRG1GxrdRTXK39zysIT57solJYXuqDm8", v: "weekly" });</script>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+  <script type="text/javascript" src="assets/js/index.js"></script>
+
+  <style>
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0, 0, 0, 0.5);
+    }
+
+    .modal-content {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: #fefefe;
+      padding: 20px;
+      border: 1px solid #888;
+      width: 300px;
+      text-align: center;
+    }
+
+    /*.modal {*/
+    /*    width:400px;*/
+    /*    height:800px;*/
+    /*    margin-top:400px;*/
+    /*   // padding-top:300px;*/
+    /*    margin-left:700px;*/
+
+    /*}*/
+  </style>
+</head>
+
+<body>
+
+  <!-- ======= Header ======= -->
+  <header id="header" class="fixed-top ">
+    <div class="container d-flex align-items-center">
+      <img src="assets/img/svasthya.png" style='width:55 ; height:55px;'></img>
+      <h1 class="logo me-auto"><a href="index.html">Svasthya<sup>TM</sup></a></h1>
+      <nav id="navbar" class="navbar">
+        <ul>
+          <li><a class="nav-link scrollto" href="#portfolio">Apply Filter</a></li>
+          <li><a class="nav-link scrollto" href="#screening">Survey Summary</a></li>
+          <li><a class="nav-link scrollto" href="#review">Doctor Review Summary</a></li>
+          <!-- <li><a class="nav-link scrollto" href="#review">InPerson Review Summary</a></li> -->
+
+
+        </ul>
+      </nav>
+
+      &emsp;
+      &emsp;
+      &emsp;
+      &emsp;
+      &emsp;
+      &emsp;
+      &emsp;
+      &emsp;
+      &emsp;
+
+      <button
+        style="align-content:center;border-width:2px;border-color:white;color:white;border-radius: 10px ;font-size: 20px;height: 40px;width:100px;"
+        class="btn btn-default" onclick="logout()">Logout</button>
+
+    </div>
+
+
+  </header><!-- End Header -->
+
+  <!-- ======= Hero Section ======= -->
+  <section id="hero" class="d-flex align-items-top">
+    <div class="container">
+      <div class="row">
+        <!-- <div class="col-lg-12 order-1 order-lg-2 hero-img" data-aos="zoom-in" data-aos-delay="200">
+           <img src="assets/img/ccare.jpg" style="width:100%;height: 50%;" class="img-fluid " alt=""> -->
+        <!--  </div> -->
+      </div>
+    </div>
+
+  </section><!-- End Hero -->
+
+
+  <div id="loading" class="modal">
+    <div class="modal-content">
+      <div class="row">
+        <div class="col-4">
+          <div class="spinner"></div>
+        </div>
+        <div class="col-8">
+          <h3 style="align-content: center;padding-top: 20px;"> Loading...</h3>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- <div  class="d-flex justify-content-center" style="display: none;">
+    <div id="loading" class="spinner-border" role="status" style="display: none;">
+      <span class="sr-only"></span>
+    </div>
+  </div> -->
+
+  <!-- ======= Portfolio Section ======= -->
+  <div id="portfolio">
+    <div class="" data-aos="fade-up">
+      <div class="section-title">
+        <p>The population cancer screening conducted by Sri Shankara Cancer Hospital is being streamlined for remote
+          review & workflow management by Svasthya.
+          In addition to the standard cancer screening & triaging protocols developed by Shankara, Svasthya captures
+          multiple vitals of the individuals.
+          Triaging for the oral cancer screening is also being improved due to the individual's oral cavity photographs
+          captured at the field level through Svasthya.
+          Doctors can remotely review the data captured on the field to evaluate the risk that an individual carries &
+          recommend a follow up action.
+          This website provides statistics about the Cancer screening using svasthya.</p>
+        <section name="form1" id="form1" href="why-us">
+          <select name="fieldworker" id="fieldworker" class="dropbtn">
+            <option value="All" selected="selected">All</option>
+          </select>
+          <select name="panchayat" id="panchayat" class="dropbtn">
+            <option value="All" selected="selected">All</option>
+          </select>
+          <select name="village" id="village" class="dropbtn">
+            <option value="All" selected="selected">All</option>
+          </select>
+          <select disabled name="daterange" id="daterange" class="dropbtn">
+            <option value="All" selected="selected">All</option>
+            <option value="Day" selected="selected">Day</option>
+            <option value="Week" selected="selected">Week</option>
+            <option value="Custom" selected>Custom</option>
+          </select>
+          <label for="start">From date:</label>
+          <input type="date" id="start" name="trip-start" class="dropbtn" />
+
+          <label for="start">To date:</label>
+          <!-- <input type="date" id="stop" name="trip-stop" value="2018-07-22" min="2018-01-01" max="2018-12-31" /> -->
+          <input type="date" id="stop" name="trip-stop" class="dropbtn" />
+          <input type="submit" value="Submit" class="dropbtn"
+            onclick="fetchdata(fieldworker.value,panchayat.value,village.value,daterange.value)">
+
+        </section>
+
+      </div>
+    </div>
+  </div>
+  <!-- End Portfolio Section -->
+  <!-- <div  class="d-flex justify-content-center" style="display: none;">
+<div id="loading" class="spinner-border" style="width: 3rem; height: 3rem;" role="status" style="display: none;">
+  <span class="sr-only"></span>
+</div>
+</div> -->
+
+  <main id="main">
+
+    <!-- ======= Screening Section ======= -->
+
+<section id="review" class="why-us section-bg" style="visibility: hidden;">
+      <div class="container-fluid" data-aos="fade-up">
+        <div class="row">
+          <div class=" col-lg-6">
+            <div class="card" style="height: 800px;">
+
+
+              <h1 class="section-title" style="align-content: center;"><strong>Remote Review Summary</strong></h1>
+              <div class="row">
+                <div class="col-lg-6 align-items-stretch order-1 order-lg-3 img" id="review" style="height:250px;"
+                  data-aos="zoom-in" data-aos-delay="50">
+                  &nbsp;</div>
+                <div class="col-lg-6 align-items-stretch order-1 order-lg-3 img" id="recommendpie" style="height:250px;"
+                  data-aos="zoom-in" data-aos-delay="50">
+                  &nbsp;</div>
+
+              </div>
+              <br>
+              <br>
+              <div class="row">
+                <div class="col-lg-6">
+                  <span></span>
+                  <h3><strong>Total Reviewed Photos: </strong></h3>
+                </div>
+                <div class="col-lg-3">
+                  <h3 id="cp"></h3>
+                </div>
+                <div class="col-lg-12 align-items-stretch order-1 order-lg-3 img" id="photocapturepie"
+                  style="height:250px;" data-aos="zoom-in" data-aos-delay="50">
+                  &nbsp;</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-6">
+            <div class="card" style="height:800px">
+              <h1 class="section-title" style="align-content: center;"><strong>Inperson Review Summary</strong></h1>
+              <div class="row">
+                <div class="col-lg-6 align-items-stretch order-1 order-lg-3 img" id="inpersonpie" style="height:250px;"
+                  data-aos="zoom-in" data-aos-delay="50">
+                  &nbsp;</div>
+                <div class="col-lg-6 align-items-stretch order-1 order-lg-3 img" id="inpersonrecommendpie"
+                  style="height:250px;" data-aos="zoom-in" data-aos-delay="50">
+                  &nbsp;</div>
+              </div>
+              <br>
+              <br>
+              <div class="row">
+                <div class="col-lg-6">
+                  <span></span>
+                  <h3><strong>Total Reviewed Photos: </strong></h3>
+                </div>
+                <br>
+                <div class="col-lg-3">
+                  <h3 id="icp"></h3>
+                </div>
+                <div class="col-lg-12 align-items-stretch order-1 order-lg-3 img" id="inphotocapturepie"
+                  style="height:250px;" data-aos="zoom-in" data-aos-delay="50">
+                  &nbsp;</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </section> 
+
+  </main>
+
+  <!-- End #main -->
+
+  <!-- ======= Footer ======= -->
+  <footer id="footer">
+    <!-- <div class="footer-top">
+      <div class="container">
+        <div class="row">
+        </div>
+      </div>
+    </div> -->
+
+    <div class="container footer-bottom clearfix">
+      <div class="copyright">
+        &copy; Copyright <strong><span>Samasti Health Technologies Ltd</span></strong>. All Rights Reserved
+      </div>
+      <div class="credits">
+        <!-- All the links in the footer should remain intact. -->
+        <!-- You can delete the links only if you purchased the pro version. -->
+        <!-- Licensing information: https://bootstrapmade.com/license/ -->
+        <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/arsha-free-bootstrap-html-template-corporate/ -->
+        <!-- Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a> -->
+      </div>
+    </div>
+  </footer><!-- End Footer -->
+
+  <div id="preloader"></div>
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
+      class="bi bi-arrow-up-short"></i></a>
+
+
+  <!-- for svasthya-->
+  <!-- ECharts -->
+
+
+  <!-- Vendor JS Files -->
+  <script src="assets/vendor/aos/aos.js"></script>
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="assets/vendor/waypoints/noframework.waypoints.js"></script>
+  <script src="assets/vendor/php-email-form/validate.js"></script>
+  <script src="assets/vendor/jquery/dist/jquery.min.js"></script>
+
+
+  <script src="assets/vendor/echarts/dist/echarts.min.js"></script>
+  <script src="assets/vendor/echarts/map/js/world.js"></script>
+
+
+
+  <!-- Template Main JS File -->
+  <script src="assets/js/main.js"></script>
+
+  <script src="assets/js/backend_ui.js"></script>
+  <script>
+    window.onload = function () {
+      var subjectObject = {
+        "S Raghuttahalli": ["Konapalli"],
+        "Kancharlahalli": ["Shettinayakanahalli", "Nadampalli", "Marabahalli",
+          "Kondegandlu", "Kancharlahalli"],
+        "Yanigadele": ["Bommepalli", "Chinnapalli", "Moota maakalahalli"],
+        "Kotagal": ["Kotagal", "Dhoddihalli", "Kurumarlahalli", "Sujjanahalli", "Narasapura"]
+      }
+
+      var panchayatselect = document.getElementById("panchayat");
+      var villageselect = document.getElementById("village");
+      for (var x in subjectObject) {
+        panchayatselect.options[panchayatselect.options.length] = new Option(x, x);
+      }
+      document.getElementById("avgplot").style.visibility = "collapse";
+      panchayatselect.onchange = function () {
+        villageselect.length = 1;
+        //display correct values
+        var z = subjectObject[panchayatselect.value];
+        for (var i = 0; i < z.length; i++)
+          villageselect.options[villageselect.options.length] = new Option(z[i], z[i]);
+      }
+
+      //var daterangearray = ["All","Day","Week","Custom"];
+      var date = document.getElementById("daterange");
+      // for(var i=0;i < daterangearray.length;i++)
+      // {
+      //   date.options[date.options.length] = new Option(daterangearray[i],daterangearray[i]);
+      // }
+      var start = document.getElementById("start");
+      var stop = document.getElementById("stop");
+      //  if(date.value == "Day")
+      //   {
+      //     start.value = new Date().getFullYear() + "-" + (new Date().getMonth()+1) + "-" + new Date().getDate();
+      //     stop.value = new Date().getFullYear() + "-" + (new Date().getMonth()+1) + "-" + new Date().getDate();
+      //     date.disabled=true;
+      //     start.disabled=true;
+      //     stop.disabled=true;
+      //     fetchdata(fieldworker.value,panchayat.value,village.value,"Day")
+      //   }
+      if (date.value == "Custom") {
+        start.value = "2023-11-21";
+        stop.value = "2023-11-21";
+        start.disabled = true;
+        stop.disabled = true;
+        date.disabled = false;
+        fetchdata(fieldworker.value, panchayat.value, village.value, "Custom")
+      }
+      // if(date.value == "All")
+      // {
+      //  start.value = "2023-10-31";
+      //  stop.value =  new Date().getFullYear() + "-" + (new Date().getMonth()+1) + "-" + new Date().getDate();
+      //  start.disabled = true;
+      //  stop.disabled = true;
+      //  date.disabled=false;
+      //  fetchdata(fieldworker.value,panchayat.value,village.value,"Custom")
+      // }
+      date.onchange = function () {
+        console.log("datechanges", date.value);
+        var newdate = new Date().getDate();
+        var mnth = new Date().getMonth() + 1;
+        if (mnth < 10) {
+          mnth = "0" + mnth;
+        }
+        else {
+          mnth = mnth;
+        }
+        if (date.value == "All") {
+
+          document.getElementById("avgplot").style.visibility = "visible";
+          start.value = "2023-10-31";
+
+          if (newdate < 10) {
+            newdate = "0" + new Date().getDate();
+          }
+          else {
+            newdate = new Date().getDate();
+          }
+
+          stop.value = "2023-11-21";//new Date().getFullYear() + "-" + mnth + "-" + newdate;
+          start.disabled = true;
+          stop.disabled = true;
+          avgplot();
+        }
+        if (date.value == "Custom") {
+          document.getElementById("avgplot").style.visibility = "collapse";
+          start.value = "";
+          stop.value = "";
+          start.disabled = false;
+          stop.disabled = false;
+        }
+        else if (date.value == "Day") {
+          document.getElementById("avgplot").style.visibility = "collapse";
+          if (newdate < 10) {
+            newdate = "0" + new Date().getDate();
+          }
+          else {
+            newdate = new Date().getDate();
+          }
+          start.value = new Date().getFullYear() + "-" + mnth + "-" + newdate;
+          stop.value = new Date().getFullYear() + "-" + mnth + "-" + newdate;
+          start.disabled = true;
+          stop.disabled = true;
+        }
+        else if (date.value == "Week") {
+          document.getElementById("avgplot").style.visibility = "collapse";
+          var t = new Date().getTime();
+          var st = t - (24 * 7 * 60 * 60 * 1000);
+          var startdate = new Date(st);
+          var enddate = new Date(t);
+          var mnth1 = startdate.getMonth() + 1;
+          var newdate;
+          var newenddate;
+          if (startdate.getDate() < 10) {
+            newdate = "0" + startdate.getDate();
+          }
+          else {
+            newdate = startdate.getDate();
+          }
+          if (enddate.getDate() < 10) {
+            newenddate = "0" + enddate.getDate();
+          }
+          else {
+            newenddate = enddate.getDate();
+          }
+          if (mnth1 < 10) {
+            mnth1 = "0" + mnth1;
+          }
+          else {
+            mnth1 = mnth1;
+          }
+          start.value = startdate.getFullYear() + "-" + mnth1 + "-" + newdate;
+          stop.value = enddate.getFullYear() + "-" + mnth1 + "-" + newenddate;
+          start.disabled = true;
+          stop.disabled = true;
+        }
+      }
+
+    }
+
+    function onSubmit() {
+      console.log("in data");
+    }
+    function logout() {
+      location.replace("../svasthya/production/login.html")
+    }
+  </script>
+
+
+
+</body>
+
+</html>

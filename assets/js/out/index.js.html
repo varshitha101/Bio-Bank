@@ -1,0 +1,3115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: index.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: index.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * @author Tantragyaan
+ * @param firebaseConfig
+ */
+let firebaseConfig = {
+	apiKey: "AIzaSyD9zJiGQZnotj50EdNVfRFHG73kXtZUwHs",
+	authDomain: "shankara-cancer-screening.firebaseapp.com",
+	databaseURL: "https://shankara-cancer-screening-default-rtdb.firebaseio.com",
+	projectId: "shankara-cancer-screening",
+	storageBucket: "shankara-cancer-screening.appspot.com",
+	messagingSenderId: "1060039489072",
+	appId: "1:1060039489072:web:656c1638465a19c3f89ff5",
+	measurementId: "G-KWC8MT2VYQ"
+  // apiKey: "AIzaSyDMiYPWOzoOwJB3mIxy-92iYvmPviT_iao",
+  // authDomain: "testing-shankaracare-web.firebaseapp.com",
+  // databaseURL: "https://testing-shankaracare-web-default-rtdb.firebaseio.com",
+  // projectId: "testing-shankaracare-web",
+  // storageBucket: "testing-shankaracare-web.appspot.com",
+  // messagingSenderId: "684280929303",
+  // appId: "1:684280929303:web:0a6c2b4be861eb83aa1052",
+  // measurementId: "G-5R8TF7ZCH4"
+};
+
+/**
+ * @function init_echarts
+ * @returns initializes charts
+ */
+function init_echarts() {
+
+    if (typeof (echarts) === 'undefined') { return; }
+   // console.log('init_echarts');
+    var theme = {
+        color: [
+            '#26B99A', '#34495E', '#BDC3C7', '#3498DB',
+            '#9B59B6', '#8abb6f', '#759c6a', '#bfd3b7'
+        ],
+
+        title: {
+            itemGap: 8,
+            textStyle: {
+                fontWeight: 'normal',
+                color: '#408829'
+            }
+        },
+
+        dataRange: {
+            color: ['#1f610a', '#97b58d']
+        },
+
+        toolbox: {
+            color: ['#408829', '#408829', '#408829', '#408829']
+        },
+
+        tooltip: {
+            backgroundColor: 'rgba(0,0,0,0.5)',
+            axisPointer: {
+                type: 'line',
+                lineStyle: {
+                    color: '#408829',
+                    type: 'dashed'
+                },
+                crossStyle: {
+                    color: '#408829'
+                },
+                shadowStyle: {
+                    color: 'rgba(200,200,200,0.3)'
+                }
+            }
+        },
+
+        dataZoom: {
+            dataBackgroundColor: '#eee',
+            fillerColor: 'rgba(64,136,41,0.2)',
+            handleColor: '#408829'
+        },
+        grid: {
+            borderWidth: 0
+        },
+
+        categoryAxis: {
+            axisLine: {
+                lineStyle: {
+                    color: '#408829'
+                }
+            },
+            splitLine: {
+                lineStyle: {
+                    color: ['#eee']
+                }
+            }
+        },
+
+        valueAxis: {
+            axisLine: {
+                lineStyle: {
+                    color: '#408829'
+                }
+            },
+            splitArea: {
+                show: true,
+                areaStyle: {
+                    color: ['rgba(250,250,250,0.1)', 'rgba(200,200,200,0.1)']
+                }
+            },
+            splitLine: {
+                lineStyle: {
+                    color: ['#eee']
+                }
+            }
+        },
+        timeline: {
+            lineStyle: {
+                color: '#408829'
+            },
+            controlStyle: {
+                normal: { color: '#408829' },
+                emphasis: { color: '#408829' }
+            }
+        },
+
+        k: {
+            itemStyle: {
+                normal: {
+                    color: '#68a54a',
+                    color0: '#a9cba2',
+                    lineStyle: {
+                        width: 1,
+                        color: '#408829',
+                        color0: '#86b379'
+                    }
+                }
+            }
+        },
+        map: {
+            itemStyle: {
+                normal: {
+                    areaStyle: {
+                        color: '#ddd'
+                    },
+                    label: {
+                        textStyle: {
+                            color: '#c12e34'
+                        }
+                    }
+                },
+                emphasis: {
+                    areaStyle: {
+                        color: '#99d2dd'
+                    },
+                    label: {
+                        textStyle: {
+                            color: '#c12e34'
+                        }
+                    }
+                }
+            }
+        },
+        force: {
+            itemStyle: {
+                normal: {
+                    linkStyle: {
+                        strokeColor: '#408829'
+                    }
+                }
+            }
+        },
+        chord: {
+            padding: 4,
+            itemStyle: {
+                normal: {
+                    lineStyle: {
+                        width: 1,
+                        color: 'rgba(128, 128, 128, 0.5)'
+                    },
+                    chordStyle: {
+                        lineStyle: {
+                            width: 1,
+                            color: 'rgba(128, 128, 128, 0.5)'
+                        }
+                    }
+                },
+                emphasis: {
+                    lineStyle: {
+                        width: 1,
+                        color: 'rgba(128, 128, 128, 0.5)'
+                    },
+                    chordStyle: {
+                        lineStyle: {
+                            width: 1,
+                            color: 'rgba(128, 128, 128, 0.5)'
+                        }
+                    }
+                }
+            }
+        },
+        gauge: {
+            startAngle: 225,
+            endAngle: -45,
+            axisLine: {
+                show: true,
+                lineStyle: {
+                    color: [[0.2, '#86b379'], [0.8, '#68a54a'], [1, '#408829']],
+                    width: 8
+                }
+            },
+            axisTick: {
+                splitNumber: 10,
+                length: 12,
+                lineStyle: {
+                    color: 'auto'
+                }
+            },
+            axisLabel: {
+                textStyle: {
+                    color: 'auto'
+                }
+            },
+            splitLine: {
+                length: 18,
+                lineStyle: {
+                    color: 'auto'
+                }
+            },
+            pointer: {
+                length: '90%',
+                color: 'auto'
+            },
+            title: {
+                textStyle: {
+                    color: '#333'
+                }
+            },
+            detail: {
+                textStyle: {
+                    color: 'auto'
+                }
+            }
+        },
+        textStyle: {
+            fontFamily: 'Arial, Verdana, sans-serif'
+        }
+    };
+}
+initialize();
+/**
+ * @function initialize
+ * Initialises the firebase instance and 
+ * fetches the field worker ids and names from 
+ * node ashaworkers 
+ */
+function initialize()
+{
+var fb = firebase.initializeApp(firebaseConfig);
+var tp ;
+var icp ;
+var cp; 
+
+ 	var fwids = fb.database().ref("ashaworkers");
+	fwids.once("value").then(snap =>{ 
+
+	  if(snap.val()!=null){
+        var fwname=[] ;
+        var fwid=[];
+        // fwid.push("");
+        // fwname.push("Select FieldWorker");
+		  snap.forEach((data) => {
+			let awid = JSON.stringify(data.val(), null, 2);
+			let awid1 = JSON.parse(awid);
+                
+				//console.log("inside fwids",awid1.ashaworkerid);
+        if(awid1.name == "kaivara")
+        {
+          awid1.name = "All";
+          awid1.ashaworkerid = "All";
+        }
+				fwid.push(awid1.ashaworkerid);
+				fwname.push(awid1.name);
+		  })
+          var list = [];
+         
+        list = document.getElementById("fieldworker"); 
+        
+		for (var x in fwname) {
+          list.options.length=x;
+          list.options[list.options.length] = new Option(fwname[x],fwid[x]);
+	        }
+		}
+	})
+}
+  var object =[];
+  var form1obj = [];
+  var form2obj=[];
+  var form3obj=[];
+  var locationobj=[];
+  var scrhis = [];
+ /**
+ * @function fetchdata
+ * @param {string} fwid fieldworkerid
+ * @param {string} panchyatid panchayatid
+ * @param {string} vid villageid
+ * @param {date} date screening date
+ * @returns filtered array based on selection criteria
+ * @returns data from nodes Form_1, Form_2, Form_3,Location, Screening history 
+ */
+async function fetchdata(fwid,panchyatid,vid,date){
+   object =[];
+   form1obj = [];
+   form2obj=[];
+   form3obj=[];
+   locationobj=[];
+   scrhis = [];
+  console.log("before fetchdata",new Date().getTime())
+  document.getElementById("loading").style.display = 'block';
+  document.getElementById("daterange").disabled = true;
+  document.getElementById("start").disabled = true;
+  document.getElementById("stop").disabled = true;
+
+    //console.log("in index",fwid,panchyatid,vid,date);
+    var parray=[];
+    console.log("before retrieve form1 obj",new Date().getTime())
+    var form1= fb.database().ref("Form_1")
+    await form1.once("value").then(snap =>{ 
+      if(snap.val()!=null){
+        console.log("after retrieve form1 obj",new Date().getTime())
+        console.log("before save form1 obj",new Date().getTime())
+        form1obj.push(snap.val());
+        console.log("after save form1 obj",new Date().getTime(),)
+      }
+    })
+    
+   //console.log("after retrieve form1 obj",new Date().getTime())
+   console.log("before retrieve form2 obj",new Date().getTime())
+    var form2= fb.database().ref("Form_2")
+    await form2.once("value").then(snap =>{ 
+      if(snap.val()!=null){
+        console.log("after retrieve form2 obj",new Date().getTime())
+        console.log("before form2 push obj",new Date().getTime())
+         form2obj.push(snap.val());
+         console.log("after form2 push obj",new Date().getTime())
+      }
+    })
+   // console.log("after retrieve form2 obj",new Date().getTime())
+    console.log("before retrieve form3 obj",new Date().getTime())
+    var form3= fb.database().ref("Form_3")
+    await form3.once("value").then(snap =>{ 
+      if(snap.val()!=null){
+        console.log("after retrieve form3 obj",new Date().getTime())
+        console.log("before save form3 obj",new Date().getTime())
+         form3obj.push(snap.val());
+         console.log("after save form3 obj",new Date().getTime())
+      }
+    })
+   //console.log("after retrieve form3 obj",new Date().getTime())
+    console.log("before retrieve location obj",new Date().getTime())
+    var location= fb.database().ref("Location")
+    await location.once("value").then(snap =>{ 
+      if(snap.val()!=null){
+        console.log("after retrieve location obj",new Date().getTime())
+        console.log("before save location obj",new Date().getTime())
+        locationobj.push(snap.val());
+        console.log("after save location obj",new Date().getTime())
+      }
+    })
+    
+    console.log("before retrieve scrhis obj",new Date().getTime())
+    var screening_history = fb.database().ref("screening_history")
+    await screening_history.once("value").then(snap =>{ 
+      if(snap.val()!=null){
+        console.log("after retrieve scrhis obj",new Date().getTime())
+        console.log("before scrhis push obj",new Date().getTime())
+        scrhis.push(snap.val());
+        console.log("after scrhis push obj",new Date().getTime())
+      }
+    })
+   // console.log("after scr his",new Date().getTime())
+    console.log("before retrieve patients", new Date().getTime())
+    var patients= fb.database().ref("patients")
+    await patients.once("value").then(snap =>{ 
+    if(snap.val()!=null){
+      console.log("after retrieve patients", new Date().getTime())
+      console.log("before save patients", new Date().getTime())
+                 object.push(snap.val());
+                 console.log("after save patients", new Date().getTime())
+                 //console.log("after retrieve patients",object)
+                 console.log("before filtering patients", new Date().getTime())
+            snap.forEach((data) => {
+                var newstartDate;
+                var newenddate;
+                var scrDate;
+                let pid = JSON.stringify(data.val(), null, 2);
+                let pid1 = JSON.parse(pid);
+                var screeningdate = pid1.last_screening;
+                var gender = pid1.gender;
+                var age = pid1.age;
+                var puuid = pid1.uid;
+              //  console.log("puid",puuid);
+                if(screeningdate == "")
+                {
+                  scrDate = "undefined";
+                }
+                else
+                {
+                   var scrdate = screeningdate.split("/");
+                   var splitsrcdate =new Date(scrdate[2],parseInt(scrdate[1],10)-1 ,scrdate[0]);
+                   scrDate = splitsrcdate.getTime()/1000;
+                   scrDate = scrDate + 18000;
+                }
+              
+                if(date == "Day")
+                {
+                  newenddate = Math.round(new Date().getTime()/1000);
+                  newstartDate = (newenddate - 86400);
+                    //("cd ",newstartDate,newenddate);
+                }
+                else if(date == "Week")
+                {
+                     newenddate = Math.round(new Date().getTime()/1000);
+                     newstartDate = (newenddate - 604800);
+                   //  console.log("cd ",newstartDate,newenddate);
+                }
+                else if((date == "Custom") || (date == "All"))
+                {
+                    var startdate = document.getElementById("start");
+                    startdate = startdate.value;
+                    var enddate = document.getElementById("stop");
+                    enddate = enddate.value;
+                 //   console.log("start date ",startdate, enddate);
+                    
+                    startdate = startdate.split("-");
+                    var startdate1 = startdate + " " + "00:00:00";
+                  //  console.log("start date before  conversion",startdate1);
+                    newstartDate = new Date(startdate1);
+                    newstartDate = Math.round(newstartDate.getTime()/1000);
+                  //  console.log("start date after conversion",newstartDate);
+                    enddate =enddate.split("-");
+                    var enddate1 = enddate + " " + "23:59:00";
+                  //  console.log("end date before conversion",enddate1);
+                    newenddate = new Date(enddate1);
+                    newenddate = Math.round(newenddate.getTime()/1000);
+                  //  console.log("end date after conversion",newenddate);
+                }
+                if(scrDate == "undefined")
+                {
+                    //console.log("No screening date");
+                }
+                else
+                {
+                    // console.log("shankara",pid1.panchayat_name);
+                     if(((pid1.field_worker_id == fwid) || (fwid == "All") || (fwid=="")) &amp;&amp; ((pid1.panchayat_name == panchyatid) ||  ((pid1.panchayat_name != "shankara") &amp;&amp; (panchyatid == "All"))) 
+                          &amp;&amp; ((pid1.village_name == vid) || ((vid == "All") &amp;&amp; (pid1.village_name != "shankara"))) &amp;&amp; ((scrDate >= newstartDate) &amp;&amp; (scrDate &lt;= newenddate)))
+                          {
+                            //  console.log("key",data.key);
+                              parray.push(data.key);
+                          }
+                          else
+                          {
+                             //console.log("No data matched");
+                          }
+                   
+                }
+            })
+            console.log("after filtering patients", new Date().getTime(),parray.length)
+           // console.log("after loop patients", new Date().getTime())
+           if(parray.length > 0)
+           {
+            findtotalpopulation(parray);
+           }
+           else
+           {
+            tp = document.getElementById("tp");
+            icp = document.getElementById("icp");
+            cp = document.getElementById("cp");
+            tp.textContent = 0 ;
+            icp.textContent = 0;
+            cp.textContent = 0;
+           
+            cormobidityReview("","","","","","");
+            habitsSummary("","","","","","");
+            genderStatistics("","");
+            agegroupgraph("","","","","","");
+            initMap(0,0);
+            reviewPercentage("");
+            recommendPercentage("","","","","");
+            inpersonpercentage("");
+            inpersonrecommendPercentage("","","","");
+            plotphotocapture("","","");
+            plotphotocapturein("","","");
+            plotscreeninghistory(0,0,0,0,0,0,0,0,0,0,0,0);
+           
+            document.getElementById("loading").style.display = 'none';
+           }
+        }
+    })
+    console.log("after fetchdata",new Date().getTime())
+}
+
+/**
+ * Function to fetch the male and female percentage
+ * from the filtered array 
+ * @param {Array} parray filtered list of ids
+ * @returns male and female array
+ */
+async function findmalefemale(parray)
+{
+  console.log("before retrieve gender",new Date().getTime())
+    var marray = 0;
+    var farrray = 0;
+    var pid;
+    var parsedJson = JSON.stringify(object[0]);
+    var obj = JSON.parse(parsedJson)
+    const map = new Map(Object.entries(obj));
+ 
+  //  console.log("length of patients",parray.length);
+    for(var i =0;i&lt;parray.length;i++)
+    {
+      //console.log("object",object[0])
+         var key ;
+       var v;
+      // if(map.has(parray[i])){
+         for (const [key, value] of map) { 
+          if(key == parray[i])
+          {
+           // Using the default iterator (could be `map.entries()` instead)
+           v = value;
+           // console.log("compare ids",v.gender);
+              switch(v.gender)
+              {
+              case "Male":
+                {
+                  marray = marray + 1;
+                  break;
+                }
+              case "Female":
+                {
+                  farrray = farrray + 1;
+                  break;
+                }
+              }
+          }
+           //}
+          }
+        }
+    
+    
+        //console.log("marray length",marray,farrray);
+        marray = Math.round((marray/parray.length) *100);
+        farrray =Math.round((farrray/parray.length)*100);
+      //  console.log("after retrieve gender",new Date().getTime())
+        genderStatistics(marray,farrray);
+}
+
+
+/**
+ * Function to fetch the total population
+ * screened by the fieldworker
+ * @param {Array} parray filtered list of ids
+ * @returns total population,comorbidities and habits
+ */
+console.log("before findtotalpopulation",new Date().getTime())
+async function findtotalpopulation(parray)
+{
+ // console.log("in find population", new Date().getTime())
+    var patientsurveyed=0;
+    var totalpopulation =0;
+    var diabetesper = 0;
+    var hypertension = 0;
+    var cancerper = 0;
+    var alcoholper=0;
+    var tobaccoyesper=0;
+    var tobaccoy = 0;
+    var tobacconotnowper = 0;
+    var tobacconn =0;
+    var notobacco = 0;
+    var tobaccon = 0;
+    var alcoholnotnowper=0;
+    var noalcohol = 0;
+    var nobp = 0;
+    var nodb = 0;
+    var nocancer=0;
+    var form1array = [];
+
+    //newly added
+    
+    var notobaccoid=[];
+    var tobaccoid =[];
+    var tobaccoabsentid =[];
+   
+   
+    var parsedJson = JSON.stringify(form1obj[0]);
+    var obj = JSON.parse(parsedJson)
+    //console.log("obj",obj);
+     
+    const map = new Map(Object.entries(obj));
+    var keysarr = "";
+     keysarr = Array.from(map.keys());
+    //console.log("uids",keysarr);
+    var valuesarr = "";
+    valuesarr = Array.from(map.values());
+     
+   // console.log("in find population before loop", new Date().getTime())
+   console.log("before comorbidities and habits form push",new Date().getTime(),parray.length)
+    for(var i =0;i&lt;parray.length;i++)
+    {
+        var parsedJson1;
+        var obj1;
+        //console.log("length",parray[i]);
+        if(map.has(parray[i]))
+        {
+      //  let length = recursiveBS(keysarr, parray[i], 0, keysarr.length - 1); 
+      let length = binarySearch(keysarr,parray[i])
+        {
+                console.log("in habit ids",length,keysarr[length]);
+                   patientsurveyed = patientsurveyed + 1; 
+                   let value = valuesarr[length];
+                   //let value = valuesarr[j];
+                   parsedJson1 = JSON.stringify(value);
+                   obj1 = JSON.parse(parsedJson1)
+                   const map1 = new Map(Object.entries(obj1)); 
+                      let lastKey =  [...map1.keys()].pop();
+                      let lastValue = map1.get(lastKey);
+                    //console.log("lastValue",lastValue);
+                    if(lastValue.cancer_present == "Yes")
+                    {
+                        cancerper = cancerper +1;
+                    }
+                    else if((lastValue.cancer_present == "No") || (lastValue.cancer_present == ""))
+                    {
+                        nocancer = nocancer +1;
+                    }
+                    if(lastValue.diabeties_present == "Yes")
+                    {
+                        diabetesper = diabetesper +1;
+                    }
+                    else if((lastValue.diabeties_present == "No")|| (lastValue.diabeties_present == ""))
+                    {
+                        nodb = nodb +1;
+                    }
+                    if(lastValue.hypertension_present == "Yes")
+                    {
+                        hypertension = hypertension +1;
+                    }
+                    else if((lastValue.hypertension_present == "No") ||(lastValue.hypertension_present == ""))
+                    {
+                        nobp = nobp +1;
+                    }
+                   if(lastValue.currently_use_tobacco_in_any_form == "Yes")
+                   {
+                        tobaccoy = tobaccoy +1;
+                        tobaccoid.push(parray[i]);
+                   }
+                   else if(lastValue.currently_use_tobacco_in_any_form == "Not Now")
+                   {
+                        tobacconn = tobacconn +1;
+                        tobaccoid.push(parray[i]);
+                   }
+                  else if((lastValue.currently_use_tobacco_in_any_form == "Absent") )
+                   {
+                        tobaccon = tobaccon +1;
+                        notobaccoid.push(parray[i]);
+                   }
+                  else if((lastValue.currently_use_tobacco_in_any_form == "Never") || (lastValue.currently_use_tobacco_in_any_form==""))
+                   {
+                    notobacco = notobacco + 1;
+                    notobaccoid.push(parray[i]);
+                   }
+                   if(lastValue.alcohol_consumption_status == "yes")
+                   {
+                        alcoholper = alcoholper +1;
+                   }
+                   else if(lastValue.alcohol_consumption_status == "Not now")
+                   {
+                        alcoholnotnowper = alcoholnotnowper + 1;
+                   }
+                  else if((lastValue.alcohol_consumption_status == "Absent") || (lastValue.alcohol_consumption_status == "Never") || (lastValue.alcohol_consumption_status == ""))
+                   {
+                        noalcohol = noalcohol +1;
+                   }
+                   form1array.push(parray[i]);
+                }
+       }
+      }
+      
+       
+    //console.log("form1array length ", form1array.length)
+    totalpopulation = patientsurveyed;
+   tp = document.getElementById("tp");
+    tp.textContent = totalpopulation ;
+    diabetesper = Math.round((diabetesper/patientsurveyed)*100);
+    cancerper = Math.round((cancerper/patientsurveyed)*100);
+    hypertension = Math.round((hypertension/patientsurveyed)*100);
+    nocancer = Math.round((nocancer/patientsurveyed)*100);
+    nodb = Math.round((nodb/patientsurveyed)*100);
+    nobp = Math.round((nobp/patientsurveyed)*100);
+    tobaccoyesper = Math.round((tobaccoy/patientsurveyed)*100);
+    tobacconotnowper = Math.round((tobacconn/patientsurveyed)*100);
+    notobacco = Math.round(((tobaccon + notobacco)/patientsurveyed)*100);
+    alcoholper =Math.round((alcoholper/patientsurveyed)*100);
+    alcoholnotnowper = Math.round((alcoholnotnowper/patientsurveyed)*100);
+    noalcohol = Math.round((noalcohol/patientsurveyed)*100);
+    //console.log("after commodity and habits process",new Date().getTime())
+    findmalefemale(form1array);
+    agegroupstatistics(form1array);
+    findlocation(form1array);
+    cormobidityReview(diabetesper,hypertension,cancerper,nocancer,nodb,nobp);
+    habitsSummary(tobaccoyesper,tobacconotnowper,notobacco,alcoholper,alcoholnotnowper,noalcohol)
+  //  console.log("after plotting habitsummary",new Date().getTime())
+    reviewSummary(form1array);
+    inpersonSummary(form1array);
+    findtimestatistics(notobaccoid,tobaccoid);
+    //newly added
+   // console.log("tobacco individuals",tobaccoid.length);
+    photocapture(tobaccoid);
+    photocaptureinperson(tobaccoid);
+}
+console.log("after findtotalpopulation",new Date().getTime())
+
+/**
+ * Binary Search
+ * from the filtered array 
+ * @param {Array} arr filtered list of ids
+ * @param {String} target id to search 
+ * @returns position of the target element
+ */
+function binarySearch(arr, target) {
+  let low = 0;
+  let high = arr.length - 1;
+
+  while (low &lt;= high) {
+      let mid = Math.floor((low + high) / 2);
+      let currentString = arr[mid];//.substring(0, 3);
+       
+      if (currentString === target) {
+        console.log("currentstr",mid); 
+          return mid; // Found the target
+      } else if (currentString &lt; target) {
+        console.log("lessthan",currentString,target,low,mid);   
+          low = mid + 1;
+      } else {
+        console.log(">",currentString,target,low,mid);   
+          high = mid - 1;
+      }
+  }
+
+  return -1; // Target not found
+}
+
+/**
+ * Function to find the percentage of photos reviewed 
+ * of the tobacco individuals
+ * @param {Array} tobacco list of ids who tobacco usage is yes or not now
+ * @returns percentage of photos reviewed Remotely
+ */
+console.log("before photocapture",new Date().getTime())
+async function photocapture(tobacco)
+{
+  var totalphotos = 0;
+  var tp = 0;
+  var normalper = 0;
+  var notclear = 0;
+  var photoreview = [];
+      
+  var abnormal = 0;
+  console.log("before photocapture",new Date().getTime())
+  var parsedJson = JSON.stringify(form2obj[0]);
+      var obj = JSON.parse(parsedJson)
+      const map = new Map(Object.entries(obj));
+    
+   // console.log("tobacco length",tobacco.length);
+  for(var i=0;i&lt;tobacco.length;i++)
+  {   
+      if(map.has(tobacco[i]))
+      {
+       // console.log("photocapture dataset 1 ",tobacco[i] )
+    
+              let v = map.get(tobacco[i])
+           // console.log("photos",v);
+              photoreview = Object.entries(v);
+              if(photoreview[0][1].photos_review == undefined)
+              {
+                continue;
+              }
+            //  console.log("photocapture dataset 1 ",v,tobacco[i] ,photoreview,photoreview[0][1].photos_review.length);
+              if(photoreview[0][1].photos_review.length > 1)
+              {
+                  totalphotos = totalphotos + photoreview[0][1].photos_review.length;
+              }
+            //}
+              for(var j=0;j&lt;photoreview[0][1].photos_review.length;j++)
+              {
+                 if(photoreview[0][1].photos_review[j].includes("123"))
+                {
+                  console.log("123");
+                  //normalper = normalper + 1;
+                }
+                else if(photoreview[0][1].photos_review[j].includes("Normal"))
+                {
+                    normalper = normalper + 1;
+                }
+                else if(photoreview[0][1].photos_review[j].includes("Not clear/visible") || photoreview[0][1].photos_review[j].includes("Wrong site"))
+                {
+                    notclear = notclear + 1;
+                }
+                else
+                {
+                    abnormal = abnormal + 1;
+                }
+              }
+             
+       }
+      else
+      {
+        console.log("No data");
+      }     
+            
+
+       tp = totalphotos; 
+  }
+ 
+ // console.log("after photocapture",new Date().getTime())
+var tabnormal=0;
+var tntclear=0;
+var tnormal=0;
+  tabnormal = Math.round((abnormal/tp)*100);
+  tntclear = Math.round((notclear/tp) *100);
+  tnormal = Math.round((normalper/tp)*100);
+ //console.log("photocapture ",tp,tabnormal,tnormal,tntclear);
+  cp = document.getElementById("cp");
+  cp.textContent = tp;
+  plotphotocapture(tabnormal,tnormal,tntclear);
+}
+//console.log("after photocapture",new Date().getTime())
+/**
+ * Function to find the percentage of photos reviewed 
+ * of the tobacco individuals
+ * @param {Array} tobacco list of ids who tobacco usage is yes or not now
+ * @returns percentage of photos reviewed Inperson
+ */
+console.log("before photocaptureinperson",new Date().getTime())
+async function photocaptureinperson(tobacco)
+{
+  var totalphotos = 0;
+  var tp = 0;
+  var normalper = 0;
+  var notclear = 0;
+  var photoreview = [];
+      
+  var abnormal = 0;
+//  console.log("before photocaptureinperson",new Date().getTime())
+  var parsedJson = JSON.stringify(form3obj[0]);
+  var obj = JSON.parse(parsedJson)
+  const map = new Map(Object.entries(obj));
+   
+  for(var i=0;i&lt;tobacco.length;i++)
+  {
+     if(map.has(tobacco[i]))
+      {
+        //console.log("photocapture form3 1 ",tobacco[i] )
+    
+            let v = map.get(tobacco[i]);
+            photoreview = Object.entries(v);
+           // console.log("photocapture dataset 1 ",photoreview,tobacco[i],photoreview[0][1].photos_review.length);
+              
+            if(photoreview[0][1].photos_review.length > 1)
+            {
+                totalphotos = totalphotos+ photoreview[0][1].photos_review.length;
+            }
+            for(var j=0;j&lt;photoreview[0][1].photos_review.length;j++)
+            {
+          
+            //  console.log("photoreview dataset",photoreview[0][1].photos_review,photoreview.length);
+              if(photoreview[0][1].photos_review[j].includes("123"))
+              {
+                console.log("123");
+                //normalper = normalper + 1;
+              }
+              else if(photoreview[0][1].photos_review[j].includes("Normal"))
+              {
+                  normalper = normalper + 1;
+              }
+              else  if(photoreview[0][1].photos_review[j].includes("Not clear/visible") || photoreview[0][1].photos_review[j].includes("Wrong site"))
+              {
+                  notclear = notclear + 1;
+              }
+              else
+              {
+                  abnormal = abnormal + 1;
+              }
+              }
+         
+      }
+
+tp = totalphotos; 
+   }
+//console.log("after photocaptureinperson",new Date().getTime())
+var tabnormal=0;
+var tntclear=0;
+var tnormal=0;
+  tabnormal = Math.round((abnormal/tp)*100);
+  tntclear = Math.round((notclear/tp) * 100);
+  tnormal = Math.round((normalper/tp)*100);
+ //console.log("photocapture ",tp,tabnormal,tnormal,tntclear);
+  icp= document.getElementById("icp");
+  icp.textContent = tp;
+  plotphotocapturein(tabnormal,tnormal,tntclear);
+}
+//console.log("after photocaptureinperson",new Date().getTime())
+/**
+ * Function to find the timetaken by the fieldworker
+ * for capturing the data for individuals not present,
+ * Tobacco individuals, Inviduals who doesnt use tobacco
+ * @param {Array} notobacco list of ids who dont use tobacco.
+ * @param {Array} tobaccoyes list of ids who use tobacco
+ * @returns minimum time, maximum time,average time and standard deviation
+ */
+console.log("before findtimestatistics",new Date().getTime())
+async function findtimestatistics(notobacco,tobaccoyes)
+{
+  console.log("before timestatistics",new Date().getTime())
+  var timetakennotobacco=[];
+  var patientabsent=[];
+  var patientwthnotobacco=[];
+  var patientwthtobacco=[];
+  var tttobaccoabsent=[];
+  var tttobacco=[];
+  // console.log("no tobacco",notobacco.length)
+   var parsedJson = JSON.stringify(object[0]);
+   var obj = JSON.parse(parsedJson)
+   const map = new Map(Object.entries(obj));
+    
+   
+    for(var i=0;i&lt;notobacco.length;i++)
+    {
+          if(map.has(notobacco[i]))
+             {
+                  let v = map.get(notobacco[i])
+                  // console.log(" no toba v",v);
+                  // const map1 = new Map(Object.entries(v));
+                  // let lastKey =  [...map1.keys()].pop();
+                  //  let lastValue = map1.get(lastKey)
+                  if(v.status == "absent")
+                  {
+                    patientabsent.push(notobacco[i])
+                  }
+                  else if(v.status == "In person")
+                  {
+                    patientwthnotobacco.push(notobacco[i])
+                  }
+              }
+             
+    }
+    //}
+    var parsedJson = JSON.stringify(object[0]);
+    var obj = JSON.parse(parsedJson)
+    const tmap = new Map(Object.entries(obj));
+     // console.log("tobacco yes",tobaccoyes.length)
+      for(var i=0;i&lt;tobaccoyes.length;i++)
+      {
+       
+         var key ;
+         //var v;
+         if(tmap.has(tobaccoyes[i]))
+         {
+          //for (const [key, v] of map) { 
+            // Using the default iterator (could be `map.entries()` instead)
+            let v = tmap.get(tobaccoyes[i]);
+            //console.log("tobac v",v);
+            // const map1 = new Map(Object.entries(v));
+            //  let lastKey =  [...map1.keys()].pop();
+            //   let lastValue = map1.get(lastKey)
+               if(v.status == "absent")
+              {
+                 patientabsent.push(tobaccoyes[i])
+              }
+              else if(v.status == "In person")
+              {
+                patientwthtobacco.push(tobaccoyes[i])
+              }
+            }
+          
+              
+            }
+          //}
+          // })
+          var parsedJson = JSON.stringify(scrhis[0]);
+          var obj = JSON.parse(parsedJson)
+          const amap = new Map(Object.entries(obj));
+     // console.log("patient absent",patientabsent.length); 
+      for(var i=0;i&lt;patientabsent.length;i++)
+      {
+
+      
+      //  console.log("patient absent",patientabsent[i])
+        if(amap.has(patientabsent[i]))
+        { 
+           v = amap.get(patientabsent[i])
+           
+          // for(const[key,value] of map)
+          // {
+              // if(key == patientabsent[i])
+              // {
+                const map1 = new Map(Object.entries(v));
+                 let lastKey = [...map1.keys()].pop();
+                 let lastValue = map1.get(lastKey);
+               // console.log("value",lastValue);
+                tttobaccoabsent.push((lastValue.end_time/60) - (lastValue.start_time/60));
+                //console.log("tobabs",tttobaccoabsent)
+              }
+          }
+         //  console.log("map scr his",map);
+
+      // var form1 = fb.database().ref("screening_history").child(patientabsent[i]).limitToLast(1)
+      //   await form1.once("value").then(snap =>{ 
+      //     if(snap.val()!=null){
+      //     snap.forEach((data)=>{
+               
+      //       let pdata = JSON.stringify(data, null, 2);
+      //       let dataset = JSON.parse(pdata);
+           // console.log("dataset",dataset.end_time, dataset.start_time);
+           
+          //})
+      //}
+    //})
+  //}
+   
+    var mintimeta=0;
+   var maxtimeta=0;
+   //console.log("tobacco absent array",tttobaccoabsent);
+   if(tttobaccoabsent.length > 0)
+   {
+    mintimeta = Math.min.apply(Math,tttobaccoabsent).toFixed(2);
+    maxtimeta = Math.max.apply(Math,tttobaccoabsent).toFixed(2);
+   }
+   else
+   {
+    mintimeta=0;
+    maxtimeta=0;
+   }
+
+  
+   var timetaken =0;
+   var avgtimeta=0;
+   var sdta = 0;
+   var sd=0;
+   for(var j=0;j&lt;tttobaccoabsent.length;j++)
+   {
+      
+     timetaken = timetaken + tttobaccoabsent[j];
+    
+     
+   }
+
+   if(timetaken > 0 )
+   {
+     avgtimeta = (timetaken/tttobaccoabsent.length).toFixed(2);
+   }
+   else
+   {
+    avgtimeta=0
+   }
+
+   sdta =  getStandardDeviation(tttobaccoabsent).toFixed(2);//(sdta/tttobaccoabsent.length).toFixed(2);
+   var parsedJson = JSON.stringify(scrhis[0]);
+   var obj = JSON.parse(parsedJson)
+   const smap = new Map(Object.entries(obj));
+   //Patient with no tobacco
+   for(var i=0;i&lt;patientwthnotobacco.length;i++)
+   {
+
+    
+    if(smap.has(patientwthnotobacco[i]))
+    { 
+
+          let value = smap.get(patientwthnotobacco[i])
+            const map1 = new Map(Object.entries(value));
+            
+           // console.log("map1",map1);
+             let lastKey = [...map1.keys()].pop();
+             let lastValue = map1.get(lastKey);
+             //console.log("id tob",patientwthnotobacco[i]);
+            // console.log("las",lastValue);
+             //console.log("endtime",lastValue.end_time/60 , lastValue.start_time/60);
+            timetakennotobacco.push((lastValue.end_time/60) - (lastValue.start_time/60));
+           // console.log("tono babs",timetakennotobacco)
+         // }
+      }
+    
+         
+     }
+ 
+ // }
+  var mintiment;
+  var maxtiment;
+  if(timetakennotobacco.length > 0)
+  {
+     mintiment = Math.min.apply(Math,timetakennotobacco).toFixed(2);
+     maxtiment = Math.max.apply(Math,timetakennotobacco).toFixed(2);
+  }
+  else
+  {
+    mintiment = 0;
+    maxtiment = 0;
+  }
+  var sd=0;
+  var sdnt=0;
+  var timetakennt =0;
+   for(var j=0;j&lt;timetakennotobacco.length;j++)
+  {
+    timetakennt = timetakennt + timetakennotobacco[j];
+  }
+  var avgtiment = Math.round(timetakennt/timetakennotobacco.length);
+  sdnt = getStandardDeviation(timetakennotobacco).toFixed(2);
+  // for(var j=0;j&lt;timetakennotobacco.length;j++)
+  //  {
+  //     sd = ((timetakennotobacco[j] - avgtiment) * (timetakennotobacco[j] - avgtiment))
+  //     sdnt = sdnt + sd; 
+  //  }
+  //  console.log("sdta",sdnt);
+  //  sdnt = (sdnt/timetakennotobacco.length).toFixed(2);
+   //console.log("sdta",sdnt);
+
+   var parsedJson = JSON.stringify(scrhis[0]);
+   var obj = JSON.parse(parsedJson)
+   const tomap = new Map(Object.entries(obj));
+//    //Patient with tobacco
+   for(var i=0;i&lt;patientwthtobacco.length;i++)
+  {
+  
+   
+    //console.log("patient absent",patientwthtobacco[i])
+    if(tomap.has(patientwthtobacco[i]))
+    { 
+         let value = tomap.get(patientwthtobacco[i])
+      // for(const[key,value] of map)
+      // {
+      //     if(key == patientwthtobacco[i])
+      //     {
+            const map1 = new Map(Object.entries(value));
+             let lastKey = [...map1.keys()].pop();
+             let lastValue = map1.get(lastKey);
+            // console.log("id",patientwthtobacco[i]);
+           //  console.log("value",lastValue);
+          //   console.log((lastValue.end_time/60) - (lastValue.start_time/60))
+           // console.log("patientwthtobacco endtime",lastValue.end_time/60 , lastValue.start_time/60);
+            tttobacco.push((lastValue.end_time/60) - (lastValue.start_time/60));
+           // console.log("toba",tttobacco)
+          //}
+      }
+        //  tttobacco.push(((dataset.end_time)/60) - ((dataset.start_time)/60));
+
+      //  })
+    }
+  //})
+
+ //}
+
+ var mintimety = 0 ;
+ var maxtimety =0;
+
+ if(tttobacco.length > 0)
+   {
+    mintimety = Math.min.apply(Math,tttobacco).toFixed(2);
+    maxtimety = Math.max.apply(Math,tttobacco).toFixed(2);
+   }
+   else
+   {
+    mintimety=0;
+    maxtimety=0;
+   }
+
+  var sd=0;
+  var sdty = 0;//Math.round((mintimety+maxtimety)/2);
+  var timetakenty =0;
+  for(var j=0;j&lt;tttobacco.length;j++)
+  {
+    timetakenty = timetakenty + tttobacco[j];
+  }
+  var avgtimety =(timetakenty/tttobacco.length).toFixed(2);
+
+  sdty = getStandardDeviation(tttobacco).toFixed(2);
+
+
+  plotscreeninghistory(mintiment,maxtiment,avgtiment,mintimeta,maxtimeta,avgtimeta,mintimety,maxtimety,avgtimety,sdnt,sdta,sdty);
+
+}
+
+
+/**
+ * Function to calculate standard deviation
+ * @param {Array} numbersArr timestamp array to find the Standard deviation 
+ * @returns Standard deviation
+ */
+console.log("after findtimestatistics",new Date().getTime())
+function getStandardDeviation(numbersArr) {
+  // CALCULATE AVERAGE
+  var total = 0;
+  for(var key in numbersArr) 
+     total += numbersArr[key];
+  var meanVal = total / numbersArr.length;
+  // CALCULATE AVERAGE
+
+  // CALCULATE STANDARD DEVIATION
+  var SDprep = 0;
+  for(var key in numbersArr) 
+     SDprep += Math.pow((parseFloat(numbersArr[key]) - meanVal),2);
+  var SDresult = Math.sqrt(SDprep/(numbersArr.length-1));
+  // CALCULATE STANDARD DEVIATION
+
+  return SDresult;       
+}
+console.log("before plotscreeninghistory",new Date().getTime())
+//screening history
+
+/**
+ * Function to plot time statistics
+ * @param {number} minnt minimum time taken for nontobacco individuals
+ * @param {number} maxnt maximum time taken for nontobacco individuals
+ * @param {number} avgnt average time taken for nontobacco individuals
+ * @param {number} sdnt standard deviation for nontobacco individuals
+ * @param {number} minta minimum time taken for individuals absent
+ * @param {number} maxta maximum time taken for individuals absent 
+ * @param {number} avgta average time taken for individuals absent 
+ * @param {number} sdta standard deviation for individuals absent
+ * @param {number} minty minimum time taken for tobacco individuals
+ * @param {number} maxty maximum time taken for tobacco individuals
+ * @param {number} avgty average time taken for tobacco individuals
+ * @param {number} sdty standard deviation for tobacco individuals
+ * @returns Standard deviation
+ */
+function plotscreeninghistory(minnt,maxnt,avgnt,minta,maxta,avgta,minty,maxty,avgty,sdnt,sdta,sdty){
+
+  //console.log(minnt,maxnt,avgnt,minta,maxta,avgta,minty,maxty,avgty);
+  var chartDom = document.getElementById('screeninghistory');
+  var myChart = echarts.init(chartDom);
+  
+var app = {};
+
+app.config = {
+  rotate: 90,
+  align: 'left',
+  verticalAlign: 'middle',
+  position: 'insideBottom',
+  distance: 15,
+  onChange: function () {
+    const labelOption = {
+      rotate: app.config.rotate,
+      align: app.config.align,
+      verticalAlign: app.config.verticalAlign,
+      position: app.config.position,
+      distance: app.config.distance
+    };
+    myChart.setOption({
+      series: [
+        {
+          label: labelOption
+        },
+        {
+          label: labelOption
+        },
+        {
+          label: labelOption
+        },
+        {
+          label: labelOption
+        }
+      ]
+    });
+  }
+};
+
+const labelOption = {
+  show: true,
+  position: app.config.position,
+  distance: app.config.distance,
+  align: app.config.align,
+  verticalAlign: app.config.verticalAlign,
+  rotate: app.config.rotate,
+  color:'black',
+  formatter: '{c}  {name|{a}}',
+  fontSize: 16,
+  rich: {
+    name: {}
+  }
+};
+var option;
+
+option = {
+  tooltip: {
+    trigger: 'axis',
+    axisPointer: {
+      type: 'shadow'
+    }
+  },
+  legend: {
+    data: ['Min', 'Max', 'Avg', 'Standard Deviation']
+  },
+  toolbox: {
+    show: true,
+    orient: 'vertical',
+    left: 'right',
+    top: 'center',
+    feature: {
+      mark: { show: true },
+      dataView: { show: true, readOnly: false },
+      magicType: { show: true, type: ['line', 'bar', 'stack'] },
+      restore: { show: true },
+      saveAsImage: { show: true }
+    }
+  },
+  xAxis: [
+    {
+      name:'Individual',
+      nameLocation:'end',
+      type: 'category',
+      axisTick: { show: false },
+      data: ['Individual Absent', 'Individual Present with Tobacco', 'Individual Present without Tobacco']
+    }
+  ],
+  yAxis: [
+    {
+      name:'Minutes',
+      nameLocation:'end',
+      type: 'value'
+    }
+  ],
+  series: [
+    {
+      name: 'Min',
+      type: 'bar',
+      barGap:0,
+      fontFamily:'Times New Roman',
+      label: labelOption,
+      emphasis: {
+        focus: 'series'
+      },
+      data: [minta, minty,minnt]
+    },
+    {
+      name: 'Max',
+      type: 'bar',
+      label: labelOption,
+      emphasis: {
+        focus: 'series'
+      },
+      data: [maxta,maxty,maxnt]
+    },
+    {
+      name: 'Avg',
+      type: 'bar',
+      label: labelOption,
+      emphasis: {
+        focus: 'series'
+      },
+      data: [avgta,avgty,avgnt]
+    },
+    {
+      name: 'Standard Deviation',
+      type: 'bar',
+      label: labelOption,
+      emphasis: {
+        focus: 'series'
+      },
+      data: [sdta,sdty,sdnt]
+    }
+  ]
+};
+
+
+//console.log("chart",option);
+option &amp;&amp; myChart.setOption(option);
+}
+console.log("after plotscreeninghistory",new Date().getTime())
+//console.log("before reviewSummary",new Date().getTime())
+/**
+ * Function to get the percentage of remotely reviewed ids
+ * @param {Array} parray array of filtered ids
+ * @returns percentage
+ */
+async function reviewSummary(parray)
+{
+    var patientreviewed=0;
+    var totalpatients=parray.length;
+    var nointervention = 0;
+    var reviewedpercentage=0;
+    var biopsyperc =0;
+    var laserper = 0;
+    var tcc = 0;
+    var followup=0;
+    var fuid=[];
+    var shrcc = 0;
+    console.log("before review summary",new Date().getTime())
+    var parsedJson = JSON.stringify(form2obj[0]);
+    var obj = JSON.parse(parsedJson)
+     const map1 = new Map(Object.entries(obj));
+    for(var i =0;i&lt;parray.length;i++)
+    {
+     
+       //console.log("review map",map1);
+        var parsedJson1;
+        var obj1;
+      //  for(const[key,value] in map1)
+      //  {
+          if(map1.has(parray[i]))
+          {  
+              value = map1.get(parray[i]);
+             // console.log("review map",value);
+                parsedJson1 = JSON.stringify(value);
+                obj1 = JSON.parse(parsedJson1)
+                const map2 = new Map(Object.entries(obj1));
+                //console.log("review map1",map2);
+
+               let lastKey =  [...map2.keys()].pop();
+            // Using the default iterator (could be `map.entries()` instead)
+               let lastValue = map2.get(lastKey)
+            //console.log("review last key",lastKey,lastValue);
+       
+                patientreviewed = patientreviewed + 1;
+                  //console.log("biopsy",dataset.biopsy ,dataset.laser,dataset.referal_of_sschrc,dataset.tobacco_cessation);
+                    if(lastValue.biopsy == "true")
+                    {
+                      //console.log("biopsy",biopsyperc);
+                        biopsyperc = biopsyperc+1;
+                    }
+                    if(lastValue.laser == "true")
+                    {
+                     // console.log("laser",laserper);
+                        laserper = laserper + 1;
+                    }
+                    if(lastValue.referal_of_sschrc == "true")
+                    {
+                     // console.log("shrcc",shrcc);
+                        shrcc = shrcc +1;
+                    }
+                    if(lastValue.tobacco_cessation == "true")
+                    {
+                     // console.log("tcc",tcc);
+                        tcc = tcc +1;
+                       // console.log("after tcc",tcc);
+                    }
+                    if(lastValue.requires_intervention == "No")
+                    {
+                      //console.log("nointervention",nointervention);
+                        nointervention = nointervention + 1;
+                    }
+                    var parsedJson = JSON.stringify(lastValue.follow_up_update);
+                    var obj = JSON.parse(parsedJson)
+                    const map = new Map(Object.entries(obj));
+                  //  console.log("followup",parsedJson,obj);
+                    var timestamp = Object.keys(lastValue.follow_up_update)[0];
+                    // Check if a timestamp exists before accessing the follow_up_updated value
+                    var followUpUpdatedValue = lastValue.follow_up_update[timestamp]
+                      ? lastValue.follow_up_update[timestamp].follow_up_updated
+                      : null;
+                    if(followUpUpdatedValue == "Yes")
+                    {
+
+                        fuid.push(parray[i]);
+                        followup = followup +1;
+                        
+                    }
+                  
+                  }
+            }
+          
+   
+    
+   // console.log("after review summary loop",new Date().getTime())
+
+//console.log("biopsyperc",biopsyperc,tcc,laserper,shrcc,nointervention,patientreviewed);
+     biopsyperc = Math.round((biopsyperc/patientreviewed)*100);
+     tcc = Math.round((tcc/patientreviewed)*100);
+     laserper =  Math.round((laserper/patientreviewed)*100);
+     shrcc =  Math.round((shrcc/patientreviewed)*100);
+     nointervention = Math.round((nointervention/patientreviewed)*100);
+     followup = Math.round((followup/patientreviewed)*100);
+   //  console.log("fuppercentage",followup);
+     reviewedpercentage =  Math.round((patientreviewed/totalpatients) * 100);
+     var rp = document.getElementById("rp");
+     console.log("after reviewSummary",new Date().getTime())
+     recommendPercentage(biopsyperc,tcc,laserper,shrcc,nointervention);
+     reviewPercentage(reviewedpercentage);
+     // rp.textContent = reviewedpercentage
+    // inpersonSummary1(fuid);
+
+}
+
+
+console.log("before inpersonSummary1",new Date().getTime())
+
+async function inpersonSummary1(parray)
+{
+    var patientreviewed=0;
+    var totalpatients=parray.length;
+    var followupeffective = 0;
+    
+    for(var i =0;i&lt;parray.length;i++)
+    {
+      //  console.log("follo uid",parray[i]);
+        var form3 = fb.database().ref("Form_3").child(parray[i]).limitToLast(1)
+        await form3.once("value").then(snap =>{ 
+         if(snap.val()!=null){
+                 followupeffective = followupeffective + 1;
+            
+         }
+        
+        })
+    }
+    //console.log("nextscr",nextscreening,"hos",hospital,"nointer",nointervention,"localproc",localprocedure);
+    followupeffective = Math.round((followupeffective/parray.length)*100);
+    console.log("after inpersonSummary1",new Date().getTime())
+    //isp.textContent = reviewedpercentage 
+    //console.log("followupeffective",followupeffective);
+     
+   
+}
+
+/**
+ * Function to get the percentage of inperson reviewed ids
+ * @param {Array} parray array of filtered ids
+ * @returns percentage
+ */
+//console.log("before inpersonSummary",new Date().getTime())
+async function inpersonSummary(parray)
+{
+    var patientreviewed=0;
+    var totalpatients=parray.length;
+    var reviewedpercentage=0;
+    var nextscreening=0;
+    var localprocedure =0;
+    var nointervention=0;
+    var hospital = 0;
+    console.log("before inperson summary",new Date().getTime())
+    var parsedJson = JSON.stringify(form3obj[0]);
+    var obj = JSON.parse(parsedJson)
+     const map1 = new Map(Object.entries(obj));
+     var keysarr = "";
+     keysarr = Array.from(map1.keys());
+    //console.log("uids",keysarr);
+    var valuesarr = "";
+    valuesarr = Array.from(map1.values());
+
+    for(var i =0;i&lt;parray.length;i++)
+    {
+
+      if(map1.has(parray[i]))
+      {
+        // var form3 = fb.database().ref("Form_3").child(parray[i]).limitToLast(1)
+        // await form3.once("value").then(snap =>{ 
+        //  if(snap.val()!=null){
+           //console.log("review map",map1);
+            var parsedJson1;
+            var obj1;
+            let length = binarySearch(keysarr,parray[i])
+            {
+          //  for(const[key,value] of map1)
+          //  {
+
+          //      if(key==parray[i])
+          //     // if(map1.has(parray[i]))
+          //     {  
+                 patientreviewed = patientreviewed + 1;
+                    //value = map1.get(parray[i]);
+                    let value = valuesarr[length];
+                    parsedJson1 = JSON.stringify(value);
+                      obj1 = JSON.parse(parsedJson1)
+                      const map2 = new Map(Object.entries(obj1));
+
+                     let lastKey =  [...map2.keys()].pop();
+                  // Using the default iterator (could be `map.entries()` instead)
+                     let lastValue = map2.get(lastKey)
+                //  console.log("review last key",lastKey,lastValue);
+                 // console.log("screeningdate",dataset.recommendation);
+                    if(lastValue.next_screening_Date != "")
+                    {
+                        nextscreening = nextscreening +1;
+                    }
+                    if(lastValue.recommendation == "Recommendation to hospital")
+                        {
+                      //    console.log("recommendation to hospital",hospital);
+                             hospital = hospital +1;
+                          //   console.log("after to hospital",hospital);
+                        }
+                    if((lastValue.recommendation == "No intervention" )|| (lastValue.recommendation == "" ))
+                    {
+                       // console.log("before rec",nointervention);
+                        nointervention = nointervention +1;
+                       // console.log("after rec",nointervention);
+                    }
+                    if(lastValue.recommendation == "Referred to local procedure")
+                    {
+                     // console.log("before rec referred to local procedure",localprocedure);
+                      localprocedure = localprocedure + 1;
+                     // console.log("before rec referred to local procedure",localprocedure);
+                    }
+                //})
+         }
+    
+        }
+      }
+    
+    //console.log("nextscr",nextscreening,"hos",hospital,"nointer",nointervention,"localproc",localprocedure);
+    nextscreening = Math.round((nextscreening/patientreviewed)*100);
+    hospital =  Math.round((hospital/patientreviewed)*100);
+    nointervention =  Math.round((nointervention/patientreviewed)*100);
+    localprocedure = Math.round((localprocedure/patientreviewed)*100);
+    console.log("after inpersonSummary",new Date().getTime())
+    inpersonrecommendPercentage(nextscreening,hospital,nointervention,localprocedure);
+    reviewedpercentage =Math.round((patientreviewed/totalpatients)*100);
+    var isp = document.getElementById("isp");
+    inpersonpercentage(reviewedpercentage);
+         
+    //isp.textContent = reviewedpercentage 
+   // console.log("reviewedpercentage",reviewedpercentage,patientreviewed);
+     
+   
+}
+
+
+
+/**
+ * Function to get the statistics of individuals based on age
+ * @param {Array} parray array of filtered ids
+ * @returns percentage for ages below 30, above 30, above 40, above 50, above 60, above 70 years
+ */
+async function agegroupstatistics(parray)
+{
+  console.log("before agegroupstatistics",new Date().getTime())
+    var below30per=0;
+    var above30per=0;
+    var above40per=0;
+    var above50per=0;
+    var above60per=0;
+    var above70per=0;
+
+    //console.log("before retrieve age",new Date().getTime())
+    var parsedJson = JSON.stringify(object[0]);
+    var obj = JSON.parse(parsedJson)
+    const map = new Map(Object.entries(obj));
+    var keysarr = "";
+    keysarr = Array.from(map.keys());
+   //console.log("uids",keysarr);
+   var valuesarr = "";
+   valuesarr = Array.from(map.values());
+    for(var i =0;i&lt;parray.length;i++)
+    {
+     
+       var key ;
+       var v;
+      //  for(const[key,value] of map)
+      //  {
+      //   if(key == parray[i])
+      //   {
+       if(map.has(parray[i])) {
+        
+      let length = binarySearch(keysarr,parray[i])
+      {
+        let value = valuesarr[length];
+            // Using the default iterator (could be `map.entries()` instead)
+          // v = map.get(parray[i]);
+          v= value;
+           //console.log("object",v.uid);
+          //  if(v.uid == parray[i])
+          //  {
+            if(v.age &lt;= 30)
+            {
+              below30per = below30per + 1;
+            }
+            else if((v.age > 30) &amp;&amp; (v.age &lt; 40))
+            {
+                above30per = above30per + 1;
+            }
+            else if((v.age >= 40) &amp;&amp; (v.age &lt; 50))
+            {
+                above40per = above40per + 1;
+            }
+             else if((v.age >= 50) &amp;&amp; (v.age &lt; 60))
+            {
+                above50per = above50per +1;
+            }
+            else if((v.age >= 60) &amp;&amp; (v.age &lt; 70))
+            {
+                above60per = above60per + 1;
+            }
+            else if(v.age >= 70)
+            {
+                above70per = above70per +1;
+            }
+          }
+              }
+           //}
+    }
+
+     below30per = Math.round((below30per/parray.length)*100);
+     above30per = Math.round((above30per/parray.length)*100);
+     above40per = Math.round((above40per/parray.length)*100);
+     above50per = Math.round((above50per/parray.length)*100);
+     above60per = Math.round((above60per/parray.length)*100);
+     above70per = Math.round((above70per/parray.length)*100);
+     console.log("after retrieve age",new Date().getTime())
+    agegroupgraph(below30per,above30per,above40per,above50per,above60per,above70per);
+   // console.log(below30per,above30per,above50per,above60per,above70per);
+
+}
+console.log("after agegroupstatistics",new Date().getTime())
+
+ 
+/**
+ * Function to get the location of individuals 
+ * @param {Array} parray array of filtered ids
+ * @returns location
+ */
+console.log("before location",new Date().getTime())
+async  function findlocation(parray) {
+        var locations =[] ;
+        var i = 0;
+        var timestamp =[];
+      //  console.log("length",parray.length)
+     // console.log("before retrieve location",new Date().getTime())
+     var parsedJson = JSON.stringify(locationobj[0]);
+     var obj = JSON.parse(parsedJson)
+      const map1 = new Map(Object.entries(obj));
+  
+        while (i &lt; parray.length) {
+            //   var form2Ref = fb.database().ref("Location").child(parray[i]).limitToLast(1);
+            //  // console.log("uid" , parray[i]);
+            
+            var lastKey;
+              
+                 var match =0;
+                 let lastkey;
+                 let lastValue;
+                 let value1;
+                //  if(map1.has(parray[i])) {
+                  //console.log("in for location",map1);
+                    for(const[key,value] of map1)
+                    {
+                     // console.log("in for location",key,value);
+                       if(key == parray[i])
+                       {
+                         
+                        // console.log("before for",value1);
+                         const map2 = new Map(Object.entries(value));
+                         lastkey = [...map2.keys()].pop();
+                         lastValue = map2.get(lastkey);
+                        // console.log("before for",lastkey ,lastValue);
+                            var j=0;
+                            for(j=0;j&lt;locations.length;j++)
+                            {
+                              //console.log("in for",JSON.stringify(locations[j]),JSON.stringify(lastValue),JSON.stringify(locations[j]) === JSON.stringify(lastValue))
+                                if(JSON.stringify(locations[j]) === JSON.stringify(lastValue))
+                                {
+                                    match = 1;
+                                    break;
+                                }
+                            }
+                        
+                            }
+                       }
+              //}
+                          if(match == 1)
+                          {
+                            //console.log("in if",j,timestamp[j],lastkey);
+                              timestamp[j] = timestamp[j] + "," + lastkey;
+                              
+                          }
+                          else
+                          {
+                          
+                            //console.log("in else loc",lastkey,lastValue);
+                              locations.push(lastValue);
+                              timestamp.push(lastkey);
+                            // console.log("in else loc",locations,timestamp);
+                          }
+                     
+                          
+                        
+                    //  })
+                    i++;
+               
+                      
+                // Increment i only after the data is fetched
+               
+           
+        }
+        console.log("after retrieve location",new Date().getTime())
+       //console.log("locations",locations,timestamp);
+        initMap(locations,timestamp)
+    //
+    }
+console.log("after location",new Date().getTime())
+
+
+
+
+
+
+
+/**
+ * Function to display the location on the google map
+ * @param {Array} locations array of locations at which the patient was screened
+ * @param {Array} timestamp array of timestamp at which the patient was screened
+ * @returns googlemap
+ */
+let map;
+
+async function initMap(locations,timestamp) {
+ 
+  // The location of Uluru
+  const { Map } = await google.maps.importLibrary("maps");
+  const { AdvancedMarkerElement } = await google.maps.importLibrary("marker");
+  var infowindow = new google.maps.InfoWindow({
+   
+   });
+  const position = { lat: 12.972442, lng:77.580643 };
+   
+  // Request needed libraries.
+  //@ts-ignore
+  // if((locations == undefined) || (locations.length == 0))
+  //  {
+  //   document.getElementById("map").hidden = true;
+  //   document.getElementById("nodata").innerText= "No Alerts Recieved";
+  //   document.getElementById("nodata").hidden=false;
+  //   return;
+  //  }
+  // The map, centered at Uluru
+  map = new Map(document.getElementById("map"), {
+    zoom: 16,
+    center: position,
+    mapId: "fd3d1fcbcd711e02",
+  });
+  var latlocation;
+  var lnglocation;
+  var datetime=[];
+  var html=[];
+  var  marker=[];
+
+
+  var myoptions ={
+    minWidth:5,
+    maxWidth:200,
+    closeBoxMargin: "10px 10px 2px 2px",
+    closeBoxURL: "http://www.google.com/intl/en_us/mapfiles/close.gif"
+  }
+     if((locations == "") &amp;&amp; (timestamp == ""))
+     {}
+     else
+     {
+    //  console.log("location in map",locations.length)    ;
+      for (let i = 0; i &lt; locations.length; i++) {
+      //  console.log("in for loop location",locations[i]);
+        if(locations[i] != undefined)
+        {
+       //console.log("in for loop location", +parseFloat(locations[i].latitude).toFixed(6));
+          if(parseFloat(locations[i].latitude).toFixed(6) != "")
+          {
+          latlocation = parseFloat(locations[i].latitude).toFixed(6);
+          lnglocation = parseFloat(locations[i].longitude).toFixed(6);
+          }
+        
+          var datestring="";
+          var newt = timestamp[i].split(",");
+          for(var j=0;j&lt;newt.length;j++)
+          {
+            datestring =  getformatteddate(new Date(newt[j]*1000)) +"\n" +datestring
+          }
+        }
+        //dtarr.push(datestring);
+      //  console.log("newt",datestring);
+
+       // console.log("location", + latlocation + lnglocation);
+        marker = new AdvancedMarkerElement({
+           map:map,
+           position: { lat:Number(latlocation), lng:Number(lnglocation)},
+           title:  datestring 
+         });
+          
+       
+       
+
+       }
+
+      }
+       if(marker == undefined)
+       {
+    
+       }
+       else
+       {
+        map.setZoom(10);
+        map.panTo(marker.position);
+        var myoptions ={
+          closeBoxMargin: "10px 20px 2px 2px",
+          closeBoxURL: "http://www.google.com/intl/en_us/mapfiles/close.gif"
+        }
+       marker.content.addEventListener("mouseover",() => {
+
+        // infowindow.setOption(myoptions)
+        // infowindow.setContent(marker.getTitle());
+        // infowindow.open(marker.getMap(), marker);
+      
+      });
+      document.getElementById("loading").style.display = 'none';
+      document.getElementById("screening").style.visibility='visible';
+    }
+  }
+
+  
+console.log("before initmap",new Date().getTime())
+initMap();
+console.log("after initmap",new Date().getTime())
+
+
+console.log("before plotphotocapture",new Date().getTime())
+//newly added
+/**
+ * Function to plot no of photos reviewed which has abnormalities, normal and not clear
+ * @param {Array} abnormal percentage array of abnormal photos
+ * @param {Array} normal percentage array of normal photos
+ * @param {Array} notclear percentage array of not clear photos
+ * @returns piechart
+ */
+function plotphotocapture(abnormal,normal,notclear){
+
+  //console.log("in inpersonrecommend chart",nxtscr,hospital,nointervention,localprocedure);
+     var chartDom = document.getElementById('photocapturepie');
+    // var chartDom1 = document.getElementById('inphotocapturepie');
+     var myChart ;
+     var myChart1;
+     
+     myChart = echarts.init(chartDom);
+        
+    // myChart1 = echarts.init(chartDom1);
+     var option="";
+       if((abnormal == "") &amp;&amp; (normal == "") &amp;&amp; (notclear == ""))
+       {
+        option = {
+          title: {
+            text: 'No Data',
+            left: 'center'
+          },
+        }
+       }
+       else
+       {
+       option = {
+           title: {
+             text: 'Photos Reviewed',
+             left: 'center'
+           },
+           grid: {
+             left: '3%',
+             right: '80%',
+             bottom: '2%',
+           },
+           tooltip: {
+             trigger: 'item'
+           },
+           legend: {
+             orient: 'horizontal',
+             left: 'center',
+             bottom:-8
+           },
+           series: [
+             {
+               name: '',
+               type: 'pie',
+               radius: ['40%', '70%'],
+               avoidLabelOverlap: false,
+               itemStyle: {
+                 borderRadius: 10,
+                 borderColor: '#fff',
+                 borderWidth: 2
+               },
+               left:'left',
+               label: {
+                 show: false,
+                 position: 'center'
+               },
+               data: [
+                 { value: abnormal, name: 'Abnormalities' },
+                 { value: normal, name: 'Normal' },
+                 { value: notclear, name: 'Not Clear' },
+                 
+               ],
+               emphasis: {
+                 itemStyle: {
+                   shadowBlur: 10,
+                   shadowOffsetX: 0,
+                   shadowColor: 'rgba(0, 0, 0, 0.5)'
+                 }
+               }
+             }
+           ]
+         };
+        }
+     
+ option &amp;&amp; myChart.setOption(option,true);
+ //option &amp;&amp; myChart1.setOption(option,true);
+ }
+ console.log("after plotphotocapture",new Date().getTime())
+ console.log("before plotphotocapturein",new Date().getTime())
+ /**
+ * Function to plot no of photos reviewed inperson which has abnormalities, normal and not clear
+ * @param {Array} abnormal percentage array of abnormal photos
+ * @param {Array} normal percentage array of normal photos
+ * @param {Array} notclear percentage array of not clear photos
+ * @returns piechart
+ */
+ function plotphotocapturein(abnormal,normal,notclear){
+
+  //console.log("in inpersonrecommend chart",nxtscr,hospital,nointervention,localprocedure);
+     var chartDom1 = document.getElementById('inphotocapturepie');
+     var myChart ;
+     var myChart1;
+     
+    // myChart = echarts.init(chartDom);
+        
+     myChart1 = echarts.init(chartDom1);
+     var option="";
+     if((abnormal == "") &amp;&amp; (normal == "") &amp;&amp; (notclear == ""))
+       {
+        option = {
+          title: {
+            text: 'No Data',
+            left: 'center'
+          },
+        }
+       }
+       else
+       {
+       option = {
+           title: {
+             text: 'Photos Reviewed',
+             left: 'center'
+           },
+           grid: {
+             left: '3%',
+             right: '80%',
+             bottom: '2%',
+           },
+           tooltip: {
+             trigger: 'item'
+           },
+           legend: {
+             orient: 'horizontal',
+             left: 'center',
+             bottom:-8
+           },
+           series: [
+             {
+               name: '',
+               type: 'pie',
+               radius: ['40%', '70%'],
+               avoidLabelOverlap: false,
+               itemStyle: {
+                 borderRadius: 10,
+                 borderColor: '#fff',
+                 borderWidth: 2
+               },
+               left:'left',
+               label: {
+                 show: false,
+                 position: 'center'
+               },
+               data: [
+                 { value: abnormal, name: 'Abnormalities' },
+                 { value: normal, name: 'Normal' },
+                 { value: notclear, name: 'Not Clear' },
+                 
+               ],
+               emphasis: {
+                 itemStyle: {
+                   shadowBlur: 10,
+                   shadowOffsetX: 0,
+                   shadowColor: 'rgba(0, 0, 0, 0.5)'
+                 }
+               }
+             }
+           ]
+         };
+        }
+     
+
+ option &amp;&amp; myChart1.setOption(option,true);
+ }
+ console.log("after plotphotocapturein",new Date().getTime())
+ 
+function getformatteddate(data)
+{
+   var date;
+   var mnth;
+   var hr;
+   var min;
+   var ss;
+   var formatteddate="";
+   let day = data.getDate();
+ //  console.log("day",day);
+   if(day &lt; 10)
+   {
+      date = "0" + data.getDate();
+   }
+   else
+   {
+      date = data.getDate();
+   }
+   if(data.getMonth() &lt; 10)
+   {
+      mnth = "0" + data.getMonth()+1;
+   }
+   else
+   {
+      mnth = data.getMonth()+1;
+   }
+   if(data.getHours().length == 1)
+   {
+      hr = "0" + data.getHours();
+   }
+   else
+   {
+      hr = data.getHours();
+   }
+   if(data.getMinutes() &lt; 10)
+   {
+      min = "0" + data.getMinutes();
+   }
+   else
+   {
+      min = data.getMinutes();
+   }
+   if(data.getSeconds()&lt;10)
+   {
+      ss = "0" + data.getSeconds();
+   }
+   else
+   {
+      ss = data.getSeconds();
+   }
+  
+   formatteddate = date + "/" + mnth + "/" + data.getFullYear() + " " + hr + ":" + min + ":" + ss;
+
+
+  return formatteddate;
+}
+function findailment(parray)
+{
+    var darray;
+    var bparray;
+    var drray;
+    for(var i=0;i&lt;parray.length;i++)
+    { 
+        var form1 = fb.database().ref("Form_1").child(parray[i])
+        form1.once("value").then(snap =>{ 
+         if(snap.val()!=null){
+             snap.forEach((data)=>{
+               var json = data.JSON
+              
+             })
+         }
+        })
+}
+}
+
+ /**
+ * Function to plot the percentage of individuals recommended for biopsy, tobacco cessation, 
+ * laser treatment, hostpital and no intervention
+ * @param {number} biopsy percentage of individuals recommended for biopsy
+ * @param {number} tcc percentage of individuals recommended for tobacco cessation
+ * @param {number} laser percentage of individuals recommended for laser treatment
+ * @param {number} shrcc percentage of individuals recommended for hospital
+ * @param {number} nointervention percentage of user who needs no intervention
+ * @returns piechart
+ */
+function recommendPercentage(biopsy,tcc,laser,shrcc,nointervention){
+  console.log("before plotting recommendPercentage",new Date().getTime())
+    var chartDom = document.getElementById('recommendpie');
+    var myChart ;
+    var option;
+   // console.log("biopsy",biopsy,tcc,laser,shrcc,nointervention);
+    myChart = echarts.init(chartDom);
+    //console.log("chart",myChart);
+   
+    if((biopsy == "")&amp;&amp; (tcc == "") &amp;&amp; (laser == "") &amp;&amp; (shrcc =="") &amp;&amp; (nointervention == ""))
+    {
+      option = {
+        title: {
+          text: 'No Data',
+          left: 'center'
+        },
+        series: []
+      }
+    }
+    else
+    {
+    option = {
+        title: {
+          text: 'Doctor Recommendation',
+          left: 'center'
+        },
+        tooltip: {
+          trigger: 'item'
+        },
+        legend: {
+          orient: 'horizontal',
+          left: 'center',
+          bottom:-8,
+         
+        },
+        grid: {
+          left: '3%',
+          right: '80%',
+          bottom: '80%',
+         
+        },
+        series: [
+          {
+            name: 'Recommended To',
+            type: 'pie',
+            radius: ['40%', '70%'],
+            avoidLabelOverlap: false,
+            itemStyle: {
+              borderRadius: 10,
+              borderColor: '#fff',
+              borderWidth: 2
+            },
+            label: {
+              show: false,
+              position: 'center'
+            },
+            data: [
+              { value: shrcc, name: 'SHRCC' },
+               {value: nointervention ,name:'No intervention'},
+               { value: laser, name: 'Laser' },
+               { value: biopsy, name: 'Biopsy ' },
+              { value: tcc, name: 'Tobacco Cessation' },
+            ],
+            emphasis: {
+              selectorLabel:{
+                  show: true,
+                  color: '#eee',
+                  backgroundColor: "#666"
+              },
+
+              itemStyle: {
+                shadowBlur: 10,
+                shadowOffsetX: 0,
+                shadowColor: 'rgba(0, 0, 0, 0.5)'
+              }
+            }
+          }
+        ]
+      };
+    }
+
+option &amp;&amp; myChart.setOption(option,true);
+console.log("after plotting recommendPercentage",new Date().getTime())
+}
+
+ /**
+ * Function to plot the percentage of individuals having diabetes,hypertension, cancer,
+ * @param {number} diabetes percentage of individuals having diabetes
+ * @param {number} hypertension percentage of individuals having hypertension
+ * @param {number} cancer percentage of individuals having cancer
+ * @param {number} nocancer percentage of individuals not having cancer
+ * @param {number} nodb percentage of individuals not having diabetes
+ * @param {number} nobp percentage of individuals not having hypertension
+ * @returns piechart
+ */
+function cormobidityReview(diabetes,hypertension,cancer,nocancer,nodb,nobp){
+ 
+    var chartDom = document.getElementById('diabetes');
+    var chartDom1 = document.getElementById('hypertension');
+    var chartDom2 = document.getElementById('cancer');
+    
+    var myChart ;
+    var myChart1 ;
+    var myChart2;
+    
+
+    myChart = echarts.init(chartDom);
+     myChart1 = echarts.init(chartDom1);
+     myChart2 = echarts.init(chartDom2);
+     var option;
+     var option1;
+     var option2;
+     if(diabetes== "" &amp;&amp; hypertension == "" &amp;&amp; cancer == "" &amp;&amp; nocancer =="" &amp;&amp; nodb == "" &amp;&amp; nobp =="")
+     {
+      option = {
+              
+        title: {
+          text: 'No Data',
+          left: 'center'
+        },
+      }
+      option1 = {
+              
+        title: {
+          text: 'No Data',
+          left: 'center'
+        },
+      }
+      option2 = {
+              
+        title: {
+          text: 'No Data',
+          left: 'center'
+        },
+      }
+     }
+     else
+{
+    //console.log("chart",myChart);
+    
+
+    
+            option = {
+              
+              title: {
+                text: 'Diabetes',
+                left: 'center'
+              },
+              tooltip: {
+                trigger: 'item'
+              },
+              grid: {
+                left: '3%',
+                right: '80%',
+                bottom: '5%',
+              },
+              legend: {
+                orient: 'horizontal',
+                left: 'center',
+                bottom:2
+              },
+              series: [
+                {
+                  name: 'Diabetes',
+                  type: 'pie',
+                  radius: ['40%', '70%'],
+                  avoidLabelOverlap: false,
+                  itemStyle: {
+                    borderRadius: 10,
+                    borderColor: '#fff',
+                    borderWidth: 2
+                  },
+                  label: {
+                    show: false,
+                    position: 'center'
+                  },
+                  emphasis: {
+                    label: {
+                      show: false,
+                      fontSize: 40,
+                      fontWeight: 'bold'
+                    }
+                  },
+                  labelLine: {
+                    show: false
+                  },
+                  data: [
+                    { value: diabetes, name: 'Present' },
+                    { value: nodb, name: 'NotPresent' },
+                  ]
+                }
+              ]
+            };
+       
+
+      
+     
+          option1 ={
+        title: {
+          text: 'Hypertension',
+          left: 'center'
+        },
+        tooltip: {
+          trigger: 'item'
+        },
+        grid: {
+          left: '3%',
+          right: '80%',
+          bottom: '5%',
+        },
+        legend: {
+          orient: 'horizontal',
+          left: 'center',
+          bottom:2
+        },
+        series: [
+          {
+            name: 'Hypertension',
+            type: 'pie',
+            radius: ['40%', '70%'],
+            avoidLabelOverlap: false,
+            itemStyle: {
+              borderRadius: 10,
+              borderColor: '#fff',
+              borderWidth: 2
+            },
+            
+            label: {
+              show: false,
+              position: 'center'
+            },
+            data: [
+              { value: hypertension, name: 'Present' },
+              { value: nobp, name: 'NotPresent' },
+           ],
+           labelLine: {
+            show: false
+          },
+            emphasis: {
+              itemStyle: {
+                shadowBlur: 10,
+                shadowOffsetX: 0,
+                shadowColor: 'rgba(0, 0, 0, 0.5)'
+              }
+            }
+          },
+          
+        ]
+           };
+      
+    
+     
+          option2 ={
+            title: {
+              text: 'Cancer',
+              left: 'center'
+            },
+            tooltip: {
+              trigger: 'item'
+            },
+            legend: {
+              orient: 'horizontal',
+              left: 'center',
+              bottom:2
+            },
+            grid: {
+              left: '3%',
+              right: '80%',
+              bottom: '5%',
+            },
+            series: [
+              {
+                name: 'Cancer',
+                type: 'pie',
+                radius: ['40%', '70%'],
+                avoidLabelOverlap: false,
+                itemStyle: {
+                  borderRadius: 10,
+                  borderColor: '#fff',
+                  borderWidth: 2
+                },
+                label: {
+                  show: false,
+                  position: 'center'
+                },
+                data: [
+                  { value: cancer, name: 'Present' },
+                  { value: nocancer, name: 'NotPresent' },
+              ],
+                emphasis: {
+                  itemStyle: {
+                    shadowBlur: 10,
+                    shadowOffsetX: 0,
+                    shadowColor: 'rgba(0, 0, 0, 0.5)'
+                  }
+                }
+              },
+              
+            ]
+          };
+        }
+    
+option &amp;&amp; myChart.setOption(option,true);
+option &amp;&amp; myChart1.setOption(option1,true);
+option &amp;&amp; myChart2.setOption(option2,true);
+}
+
+/**
+ * Function to plot the percentage of individuals having below habits
+ * tobacco,alcohol
+ * @param {number} tobaccoyesper percentage of individuals having tobacco habit
+ * @param {number} tobacconotnowper percentage of individuals who has quit tobacco
+ * @param {number} notobacco percentage of individuals not having tobacco habit
+ * @param {number} alcoholper percentage of individuals having alcohol habit
+ * @param {number} alcoholnotnowper percentage of individuals who has quit alcohol
+ * @param {number} noalcohol percentage of individuals not having alcohol habit
+ * @returns piechart
+ */
+function habitsSummary(tobaccoyesper,tobacconotnowper,notobacco,alcoholper,alcoholnotnowper,noalcohol){
+ 
+    var chartDom = document.getElementById('tobacco');
+    var chartDom1 = document.getElementById('alcohol');
+
+    var myChart = echarts.init(chartDom);
+    var myChart1 = echarts.init(chartDom1);
+    
+
+    var option;
+    if((tobaccoyesper==0) &amp;&amp; (tobacconotnowper==0) &amp;&amp; (notobacco ==0))
+     {
+          option = {
+          
+            title: {
+              text: 'No Data',
+              left: 'center'
+            },
+            series: []
+        }
+    }
+    else
+    {
+        option = {
+            title: {
+              text: 'Tobacco',
+              left: 'center'
+            },
+            tooltip: {
+              trigger: 'item'
+            },
+            legend: {
+              orient: 'horizontal',
+              left: 'center',
+              bottom:2
+            },
+            grid: {
+              left: '3%',
+              right: '80%',
+              bottom: '5%',
+            },
+            series: [
+              {
+                name: 'Tobacco',
+                type: 'pie',
+                radius: ['40%', '70%'],
+                avoidLabelOverlap: false,
+                itemStyle: {
+                  borderRadius: 10,
+                  borderColor: '#fff',
+                  borderWidth: 2
+                },
+                label: {
+                  show: false,
+                  position: 'center'
+                },
+                data: [
+                  { value: tobaccoyesper, name: 'Yes' },
+                  { value: notobacco, name: 'Never' },
+                  { value: tobacconotnowper, name: 'Not Now' },
+                 
+              ],
+                emphasis: {
+                  itemStyle: {
+                    shadowBlur: 10,
+                    shadowOffsetX: 0,
+                    shadowColor: 'rgba(0, 0, 0, 0.5)'
+                  }
+                }
+              },
+              
+            ]
+          };
+    }
+
+    var option1;
+   // console.log("alc y",alcoholper,"ntnw",alcoholnotnowper,"noalc",noalcohol);
+    if((alcoholper==0) &amp;&amp;(alcoholnotnowper==0)&amp;&amp;(noalcohol==0))
+    {
+        option1 = {
+          title: {
+            text: 'No Data',
+            left: 'center'
+          },
+          series: []
+        }
+    }
+  else
+  {
+        option1 ={
+            title: {
+              text: 'Alcohol',
+              left: 'center'
+            },
+            tooltip: {
+              trigger: 'item'
+            },
+            legend: {
+              orient: 'horizontal',
+              left: 'center',
+              bottom:2
+            },
+            grid: {
+              left: '3%',
+              right: '80%',
+              bottom: '5%',
+            },
+            series: [
+              {
+                name: 'Alcohol',
+                type: 'pie',
+                radius: ['40%', '70%'],
+                avoidLabelOverlap: false,
+                itemStyle: {
+                  borderRadius: 10,
+                  borderColor: '#fff',
+                  borderWidth: 2
+                },
+                label: {
+                  show: false,
+                  position: 'center'
+                },
+                data: [
+                  { value: alcoholper, name: 'Yes' },
+                  { value: noalcohol, name: 'Never' },
+                  { value: alcoholnotnowper, name: 'Not Now' },
+                
+              ],
+                emphasis: {
+                  itemStyle: {
+                    shadowBlur: 10,
+                    shadowOffsetX: 0,
+                    shadowColor: 'rgba(0, 0, 0, 0.5)'
+                  }
+                }
+              },
+              
+            ]
+          };
+  }
+option &amp;&amp; myChart.setOption(option,true);
+option &amp;&amp; myChart1.setOption(option1,true);
+
+}
+
+/**
+ * Function to plot the percentage of inperson individuals who are recommended to
+ *  next screening, hospital, no intervention and local procedure
+ * @param {number} nxtscr percentage of individuals recommended to next screening.
+ * @param {number} hospital percentage of individuals individuals recommended to hospital
+ * @param {number} nointervention percentage of individuals recommended no intervention
+ * @param {number} localprocedure percentage of individuals recommended to localprocedure
+ * @returns piechart
+ */
+function inpersonrecommendPercentage(nxtscr,hospital,nointervention,localprocedure){
+  console.log("before plotting inperson recommendPercentage",new Date().getTime())
+ //console.log("in inpersonrecommend chart",nxtscr,hospital,nointervention,localprocedure);
+    var chartDom = document.getElementById('inpersonrecommendpie');
+    var myChart ;
+    
+    myChart = echarts.init(chartDom);
+    var option="";
+    if((nxtscr == "") &amp;&amp; (hospital == "") &amp;&amp; (nointervention =="") &amp;&amp; (localprocedure == ""))
+    {
+        option = {   
+        title: {
+          text: 'No Data',
+          left: 'center'
+        },
+        series: []
+      }
+
+    }
+    else
+    {
+      option = {
+          title: {
+            text: 'Doctor Recommendation',
+            left: 'center'
+          },
+          grid: {
+            left: '3%',
+            right: '80%',
+            bottom: '2%',
+          },
+          tooltip: {
+            trigger: 'item'
+          },
+          legend: {
+            orient: 'horizontal',
+            left: 'center',
+            bottom:-8
+          },
+          series: [
+            {
+              name: 'Recommended To',
+              type: 'pie',
+              radius: ['40%', '70%'],
+              avoidLabelOverlap: false,
+              itemStyle: {
+                borderRadius: 10,
+                borderColor: '#fff',
+                borderWidth: 2
+              },
+              left:'left',
+              label: {
+                show: false,
+                position: 'center'
+              },
+              data: [
+                { value: localprocedure, name: 'Local Procedure' },
+                { value: nointervention, name: 'No Intervention' },
+                { value: nxtscr, name: 'Next Screening' },
+                { value: hospital, name: 'Hospital' },
+                
+              ],
+              emphasis: {
+                itemStyle: {
+                  shadowBlur: 10,
+                  shadowOffsetX: 0,
+                  shadowColor: 'rgba(0, 0, 0, 0.5)'
+                }
+              }
+            }
+          ]
+        };
+      
+    }
+option &amp;&amp; myChart.setOption(option,true);
+console.log("after plotting inperson recommendPercentage",new Date().getTime())
+}
+
+/**
+ * Function to plot the percentage of remote reviewed individuals 
+ * @param {number} reviewedpercentage percentage of individuals remotely reviewed.
+ * @returns piechart
+ */
+function reviewPercentage(reviewedpercentage){
+  console.log("before plotting inperson reviewpercentage",new Date().getTime())
+    var chartDom = document.getElementById('reviewpie');
+    var myChart;
+    var option="";
+    
+    myChart = echarts.init(chartDom)
+    var remainingpercentage = (100 - reviewedpercentage);
+  if(reviewedpercentage == "")
+  {
+    option = {
+      title: {
+        text: 'No Data',
+      }
+    }
+  }
+    else
+    {
+    option = {
+        title: {
+          text: 'Doctor Remote review',
+          left: 'center'
+        },
+        tooltip: {
+          trigger: 'item'
+        },
+        legend: {
+          orient: 'horizontal',
+          left: 'center',
+          bottom:2
+        },
+        series: [
+          {
+            name: 'Review percentage',
+            type: 'pie',
+            radius: ['40%', '70%'],
+            avoidLabelOverlap: false,
+            itemStyle: {
+              borderRadius: 10,
+              borderColor: '#fff',
+              borderWidth: 2
+            },
+            left:'left',
+            label: {
+              show: false,
+              position: 'center'
+            },
+            data: [
+              { value: remainingpercentage, name: 'Not Reviewed' },
+              { value: reviewedpercentage, name: 'Reviewed' },
+              
+            ],
+            emphasis: {
+              itemStyle: {
+                shadowBlur: 10,
+                shadowOffsetX: 0,
+                shadowColor: 'rgba(0, 0, 0, 0.5)'
+              }
+            }
+          }
+        ]
+      };
+    }
+option &amp;&amp; myChart.setOption(option,true);
+console.log("before plotting inperson reviewpercentage",new Date().getTime())
+}
+
+/**
+ * Function to plot the percentage of male and female individuals screened
+ * @param {number} maleper percentage of male individuals screened.
+ * @param {number} femaleper percentage of female individuals screened
+ * @returns piechart
+ */
+function genderStatistics(maleper,femaleper){
+  console.log("before plotting gender",new Date().getTime())
+    var chartDom = document.getElementById('gender');
+
+    var myChart;
+    
+    myChart = echarts.init(chartDom)
+    var option;
+    if((maleper == 0) &amp;&amp; (femaleper == 0))
+    {
+      option = {
+        title: {
+          text:'No Data',
+          left: 'center'
+        },
+        series: []
+      }
+    }
+    else
+    {
+    option = {
+        title: {
+          left: 'center'
+        },
+        
+        tooltip: {
+          trigger: 'item'
+        },
+        legend: {
+          orient: 'horizontal',
+          left: 'center',
+          bottom:2
+        },
+        series: [
+          {
+            name: '',
+            type: 'pie',
+            
+            radius: ['40%', '70%'],
+            avoidLabelOverlap: false,
+            itemStyle: {
+              borderRadius: 10,
+              borderColor: '#fff',
+              borderWidth: 2
+            },
+            label: {
+              show: false,
+              position: 'center'
+            },
+            data: [
+              { value: maleper, name: 'Male ' },
+              { value: femaleper, name: 'Female' },
+            
+            ],
+            emphasis: {
+              itemStyle: {
+                shadowBlur: 10,
+                shadowOffsetX: 0,
+                shadowColor: 'rgba(0, 0, 0, 0.5)'
+              }
+            }
+          }
+        ]
+      };
+    }
+
+option &amp;&amp; myChart.setOption(option,true);
+console.log("after plotting gender",new Date().getTime())
+}
+
+/**
+ * Function to plot the percentage of screened individuals of different agegroups
+ * @param {number} below30 percentage of individuals below 30.
+ * @param {number} above30 percentage of individuals above 30.
+ * @param {number} above40 percentage of individuals above 40.
+ * @param {number} above50 percentage of individuals above 50.
+ * @param {number} above60 percentage of individuals above 60.
+ * @param {number} above70 percentage of individuals above 70.
+ * @returns barchart
+ */
+function agegroupgraph(below30,above30,above40,above50,above60,above70){
+  console.log("before plotting age",new Date().getTime())
+    var chartDom = document.getElementById('agegroup');
+    var myChart;
+
+    myChart = echarts.init(chartDom);
+    if((below30 == "") &amp;&amp; (above30 == "") &amp;&amp; (above40 == "")&amp;&amp; (above50 == "") &amp;&amp; (above60 == "") &amp;&amp; (above70==""))
+    {
+      option = {
+        title:{
+          text:"No Data",
+          left:'center'
+
+        },
+        series: []
+      }
+    }
+    else{
+  //  console.log("chart",myChart);
+  option = {
+    xAxis: {
+      name:'Age Group',
+      nameLocation:'middle',
+      nameGap:'45',
+      type: 'category',
+      data: ['&lt;30', '>30', '>40','>50', '>60', '>70']
+    },
+    yAxis: {
+      name:'Percentage',
+      nameLocation:'end',
+      type: 'value',
+      title:'Percentage',
+    },
+    series: [
+      {
+        data: [below30,above30,above40,above50,above60, above70],
+        type: 'bar',
+        showBackground: true,
+        barGap:'20%',
+        barCategoryGap:'50%',
+        backgroundStyle: {
+          color: 'rgba(220, 220, 220, 0.8)'
+        },
+      }
+    ]
+  };
+      }
+
+option &amp;&amp; myChart.setOption(option,true);
+console.log("after plotting age",new Date().getTime())
+}
+
+
+/**
+ * Function to plot the average timetaken for All selection 
+ * @returns barchart
+ */
+function avgplot()
+{
+  console.log("before avg plotting",new Date().getTime())
+  var chartDom = document.getElementById('avgplot');
+  //console.log('percent',reviewedpercentage);
+   var myChart;
+   var option;
+   myChart = echarts.init(chartDom);
+   option = {
+       tooltip: {
+          trigger: 'item'
+        },
+        legend: {
+          orient: 'horizontal',
+          left: 'center',
+          bottom:2
+        },
+    xAxis: {
+      name:'Date',
+      nameLocation:'end',
+      type: 'category',
+      data: ['31 Oct', '2 Nov', '3 Nov', '6 Nov', '7 Nov', '8 Nov', '9 Nov','13 Nov','15 Nov','16 Nov','20 Nov','21 Nov']
+    },
+    yAxis: {
+      name:'Avg',
+      nameLocation:'end',
+      type: 'value',
+      min:'10'
+    },
+    series: [
+      {
+        data: [18.31,18.86,14.16,19.23,14.99,10.79,16.84,17.37,11.50,11.85,11.85,12.66],
+        type: 'line'
+      }
+    ]
+  };
+  
+  option &amp;&amp; myChart.setOption(option);
+  console.log("after avgplot",new Date().getTime())
+}
+
+
+/**
+ * Function to plot the percentage of inperson reviewed individuals
+ * @param {number} reviewedpercentage percentage of inperson reviewed
+
+ * @returns piechart
+ */
+function inpersonpercentage(reviewedpercentage){
+  console.log("before inperson",new Date().getTime())
+    var chartDom = document.getElementById('inpersonpie');
+   //console.log('percent',reviewedpercentage);
+    var myChart;
+
+    myChart = echarts.init(chartDom);
+    var remainingpercentage = (100 - reviewedpercentage);
+   // console.log('rem percent',remainingpercentage);
+    if(reviewedpercentage == 0)
+    {
+        option = {
+          title: {
+            text: 'No Data',
+            left: 'right'
+          },
+          series: []
+      }
+    }
+    else
+    {
+      option = {
+        title: {
+          text: 'Inperson review',
+          left: 'center'
+        },
+        tooltip: {
+          trigger: 'item'
+        },
+        legend: {
+          orient: 'horizontal',
+          left: 'center',
+          bottom:2
+        },
+        series: [
+          {
+            name: 'Review percentage',
+            type: 'pie',
+            radius: ['40%', '70%'],
+            avoidLabelOverlap: false,
+            itemStyle: {
+              borderRadius: 10,
+              borderColor: '#fff',
+              borderWidth: 2
+            },
+            label: {
+              show: false,
+              position: 'center'
+            },
+            data: [
+              { value: remainingpercentage, name: 'Not Reviewed' },
+              { value: reviewedpercentage, name: 'Reviewed ' },
+             
+            
+            ],
+            emphasis: {
+              itemStyle: {
+                shadowBlur: 10,
+                shadowOffsetX: 0,
+                shadowColor: 'rgba(0, 0, 0, 0.5)'
+              }
+            }
+          }
+        ]
+      };
+    }
+  
+  //document.getElementById("loading").style.display='none';
+  document.getElementById("review").style.visibility='visible';
+  option &amp;&amp; myChart.setOption(option,true);
+  document.getElementById("daterange").disabled = false;
+  document.getElementById("start").disabled = false;
+  document.getElementById("stop").disabled = false;
+
+  console.log("after inperson",new Date().getTime())
+}
+
+$(document).ready(function () {
+    init_echarts();
+});
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#agegroupgraph">agegroupgraph</a></li><li><a href="global.html#agegroupstatistics">agegroupstatistics</a></li><li><a href="global.html#avgplot">avgplot</a></li><li><a href="global.html#binarySearch">binarySearch</a></li><li><a href="global.html#cormobidityReview">cormobidityReview</a></li><li><a href="global.html#element1">element1</a></li><li><a href="global.html#fetchdata">fetchdata</a></li><li><a href="global.html#findmalefemale">findmalefemale</a></li><li><a href="global.html#firebaseConfig">firebaseConfig</a></li><li><a href="global.html#genderStatistics">genderStatistics</a></li><li><a href="global.html#habitsSummary">habitsSummary</a></li><li><a href="global.html#init_echarts">init_echarts</a></li><li><a href="global.html#initializeInitialisesthefirebaseinstanceandfetchesthefieldworkeridsandnamesfromnodeashaworkers">initializeInitialises the firebase instance and fetches the field worker ids and names from node ashaworkers</a></li><li><a href="global.html#inpersonSummary">inpersonSummary</a></li><li><a href="global.html#inpersonpercentage">inpersonpercentage</a></li><li><a href="global.html#inpersonrecommendPercentage">inpersonrecommendPercentage</a></li><li><a href="global.html#internetConnectionStatus">internetConnectionStatus</a></li><li><a href="global.html#map">map</a></li><li><a href="global.html#plotphotocapture">plotphotocapture</a></li><li><a href="global.html#plotphotocapturein">plotphotocapturein</a></li><li><a href="global.html#plotscreeninghistory">plotscreeninghistory</a></li><li><a href="global.html#recommendPercentage">recommendPercentage</a></li><li><a href="global.html#reviewPercentage">reviewPercentage</a></li><li><a href="global.html#reviewSummary">reviewSummary</a></li><li><a href="global.html#submit">submit</a></li><li><a href="global.html#username">username</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Fri Jan 05 2024 12:46:07 GMT+0530 (India Standard Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

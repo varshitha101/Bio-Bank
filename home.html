@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bio Bank</title>
+  <!--Google Fonts and Icons-->
+  <link
+    href="https://fonts.googleapis.com/icon?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Round|Material+Icons+Sharp|Material+Icons+Two+Tone"
+    rel="stylesheet" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/style.css">
+  <script src="index.js"></script>
+
+  <!-- Bootstrap -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+    crossorigin="anonymous"></script>
+
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+</head>
+
+<body>
+  <nav class="navbar sticky-top navbar-expand-lg navbar-light" style="background-color: #1991c994 ;">
+    <div class="container-fluid">
+      <div class="mx-auto">
+        <ul class="nav nav-pills nav-fill">
+          <li class="nav-item">
+            <a class="nav-link active" href="#">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="search.html">Search</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="todo.html">To-Do list</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="statistics.html">Statistics</a>
+          </li>
+        </ul>
+      </div>
+      <div class="d-flex ms-auto">
+        <button onclick="logout()" id="logout" type="submit" class="btn btn-outline-primary">Logout</button>
+      </div>
+    </div>
+  </nav>
+
+
+
+  <div class="container-fluid">
+    <div class="center">
+      <div class="bio_box" style="background-color: #1991c994;">
+        <div class="box_selector">
+          <div class="row" style="width: 400px; justify-content: space-between;">
+            <div class="head col-lg-11">
+              <div class="title">BR Blood Box - 1</div>
+            </div>
+            <div class="col-lg-1">
+              <img src="assets/images/plus-circle-s-svgrepo-com.svg" alt=""
+                style="height: 30px; width: 30px; cursor:pointer;" onclick="addBloodBox()" class="rounded-circle">
+            </div>
+          </div>
+
+          <div id="blood-box-container" class="seats">
+            <div class="blood-box" id="box-1">
+              <div class="status" style="margin-bottom: 10px;">
+                <div class="item">Empty</div>
+                <div class="item">Occupied</div>
+                <div class="item">Outsource</div>
+              </div>
+              <input type="checkbox" name="bio_box" id="S1" />
+            </div>
+          </div>
+
+          <div class="arrow-navigation" style="text-align: center;">
+            <button onclick="prevBox()" class="arrow-btn">←</button>
+            <button onclick="nextBox()" class="arrow-btn">→</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="bio_box" style="background-color: #1991c994;">
+        <div class="box_selector">
+          <div class="row" style="width: 400px; justify-content: space-between;">
+            <div class="head col-lg-11">
+              <div class="title">Specimen Box - 1</div>
+            </div>
+            <div class="col-lg-1">
+              <img src="assets/images/plus-circle-s-svgrepo-com.svg" alt=""
+                style="height: 30px; width: 30px; cursor:pointer;" onclick="addBloodBox()" class="rounded-circle">
+            </div>
+          </div>
+
+          <div id="blood-box-container" class="seats">
+            <div class="specimen-box" id="box-1">
+              <div class="status" style="margin-bottom: 10px;">
+                <div class="item">Empty</div>
+                <div class="item">Occupied</div>
+                <div class="item">Outsource</div>
+              </div>
+              <input type="checkbox" name="bio_box" id="P1" />
+            </div>
+          </div>
+
+          <div class="arrow-navigation" style="text-align: center;">
+            <button onclick="prevBox()" class="arrow-btn">←</button>
+            <button onclick="nextBox()" class="arrow-btn">→</button>
+          </div>
+        </div>
+      </div>
+      
+
+    </div>
+    <div class="container mt-2" style="text-align: center; ">
+        
+        <div class="form-group" style="align-items: center;">
+          <button type="submit" class="btn btn-primary" id="continuePage" onclick="handleContinue()">Add Sample Data</button>
+        </div>
+    </div>
+    <!-- Modal structure -->
+    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
+      aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLongTitle">Sample Data</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+
+          </div>
+
+
+          <div class="modal-body">
+            <form id="seat-info">
+
+
+              <div class="row">
+                <div class="form-group col-12">
+                  <label for="inputState">Biobank ID</label>
+                  <div class="row">
+                    <div class="col-7">
+                      <input type="text" class="form-control" id="cancer_type" placeholder="Enter Biobank ID">
+                    </div>
+                    <div class="col-4">
+                      <button type="submit" class="btn btn-primary" id="submitBtn"
+                        onclick="handleSubmit()">Submit</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="inputState">Name</label>
+                <input type="text" class="form-control" id="cancer_type" placeholder="Patient Name">
+              </div>
+
+              <div class="row">
+                <div class="form-group col-md-6">
+                  <label for="inputState">Gender</label>
+                  <select id="inputState" class="form-control">
+                    <option selected>Select</option>
+                    <option>Male</option>
+                    <option>Female</option>
+                  </select>
+                </div>
+                <div class="form-group col-md-6">
+                  <label for="inputState">Age</label>
+                  <input type="text" class="form-control" id="cancer_type" placeholder="Years">
+                </div>
+              </div>
+              <div class="row">
+                <div class="form-group col-md-6">
+                  <label for="inputState">Cancer Type</label>
+                  <select id="inputState" class="form-control">
+                    <option selected>Select</option>
+                    <option>Invasive Breast Carcinoma</option>
+                    <option>Basal cell carcinoma</option>
+                    <option>Ductal carcinoma</option>
+                    <option>Mixed Carcinoma</option>
+                  </select>
+                </div>
+                <div class="form-group col-md-6">
+                  <label for="inputState">Sample Type</label>
+                  <select id="inputState" class="form-control">
+                    <option selected>Select</option>
+                    <option>Serem</option>
+                    <option>Plasma</option>
+                    <option>Buffy Coat</option>
+                  </select>
+                </div>
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="submit" class="btn btn-primary" id="continuePage" onclick="handleContinue()">Continue</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>
+
+    function handleContinue(){
+      window.location.href = 'default.html';
+    }
+    function handleSubmit() {
+      event.preventDefault();
+
+      const submitBtn = document.getElementById('submitBtn');
+
+      submitBtn.innerHTML = `
+      <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+      Loading...
+    `;
+      submitBtn.disabled = true;
+
+      setTimeout(() => {
+        submitBtn.innerHTML = 'Submit';
+        submitBtn.disabled = false;
+      }, 2000);
+    }
+    test1();
+    test2();
+
+    document.getElementById('logout').addEventListener('click', logout);
+
+    function logout() {
+
+      window.location.href = 'login.html';
+
+    }
+  </script>
+  &emsp;
+</body>
+
+</html>

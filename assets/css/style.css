@@ -1,0 +1,181 @@
+    body {
+    width: 100%;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    /* background: linear-gradient(
+        to right,
+        #5ba3c294 ,
+        rgb(89, 181, 224)    );     */
+    }
+    .center {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    padding-top: 10px;
+    justify-content: space-around;
+    }
+    .bio_box {
+    width: 520px;
+    height: fit-content;
+    border: 0.4mm solid rgba(0, 0, 0, 0.08);
+    border-radius: 3mm;
+    box-sizing: border-box;
+    padding: 10px;
+    font-family: poppins;
+    max-height: 96vh;
+    overflow: auto;
+    background: white;
+    box-shadow: 0px 25px 50px -12px rgba(0, 0, 0, 0.25);
+    }
+    .box_selector {
+    background: rgb(243, 243, 243);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: column;
+    box-sizing: border-box;
+    padding: 15px;
+    }
+    .head {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 30px;
+    }
+    .title {
+    font-size: 16px;
+    font-weight: 600;
+    }
+    .seats {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    min-height: 150px;
+    position: relative;
+    }
+    .status {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    }
+    .modal-backdrop.show {
+    opacity: 0;
+    }
+    .modal-backdrop.fade {
+        opacity: 0;
+      }
+
+    .item {
+    font-size: 12px;
+    position: relative;
+    }
+    .item::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: -12px;
+    transform: translate(0, -50%);
+    width: 10px;
+    height: 10px;
+    background: rgb(143, 218, 187);
+    border-radius: 0.3mm;
+    }
+    .item:nth-child(2)::before {
+    background: rgb(129, 129, 192);
+    outline: none;
+    }
+    .item:nth-child(3)::before {
+    background: rgb(180, 180, 180);
+    outline: none;
+    }
+    .spicemen-box {
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    grid-gap: 15px;
+    
+    position: relative;
+    }
+    .blood-box {
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    grid-gap: 15px;
+    position: relative;
+    
+    }
+    .seat {
+    width: 70px;
+    height: 30px;
+    margin-right: 8px;
+    background: rgb(143, 218, 187);
+    border-radius: 0.5mm;
+    outline: 0.3mm solid rgb(180, 180, 180);
+    cursor: pointer;
+    }
+    /* .spicemen-box input:checked + label {
+    background: rgb(180, 180, 180);
+    outline: none;
+    }
+    .blood-box input:checked + label {
+    background: rgb(180, 180, 180);
+    outline: none;
+    } */
+   
+
+    .specimen-box input:checked + label {
+    background: rgb(129, 129, 192);
+    outline: none;
+    }
+    .blood-box input:checked + label {
+    background: rgb(129, 129, 192);
+    outline: none;
+    }
+    .seat.booked {
+    background: rgb(129, 129, 192);
+    outline: none;
+    }
+    input {
+    display: none;
+    }
+
+
+
+.blood-box:first-child {
+  display: block; 
+}
+
+.arrow-btn {
+  padding: 5px 10px;
+  margin: 0 10px;
+  cursor: pointer;
+}
+
+
+
+.card-header{
+  justify-content: space-between;
+}
+
+/* default.html */
+
+.nav-tabs {
+  border-bottom: 2px solid #1991c9;
+}
+.nav-tabs .nav-link {
+  color: #555;
+  font-weight: bold;
+}
+.nav-tabs .nav-link.active {
+  background-color: #1991c9;
+  color: #fff;
+  border: none;
+}
+.tab-content {
+  padding: 15px;
+  border: 1px solid #1991c9;
+  border-top: none;
+}

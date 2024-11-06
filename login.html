@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <link rel="icon" href="/docs/4.0/assets/img/favicons/favicon.ico">
+
+  <title>Login</title>
+
+  <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/sign-in/">
+
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+  <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+
+  <link href="assets/css/login-custom.css" rel="stylesheet">
+</head>
+
+<body>
+  <div class="container-fluid wrapper">
+    <div class="account-wall">
+      <div class="log_img" >
+        <img src="assets/images/login_logo.jpg" style="height: 50%; width: 60%;" alt="">
+      </div>
+      <form class="form-signin" onsubmit="return redirectToHome()">
+        <label for="Email">Email</label>
+        <input type="text" class="form-control" placeholder="Email" required autofocus>
+        <br>
+        <label for="password">Password</label>
+        <input type="password" class="form-control" placeholder="Password" required>
+        <div id="remember" class="checkbox">
+          <label>
+              <input type="checkbox" value="remember-me"> Remember me
+          </label>
+      </div>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">
+          Sign in
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    function redirectToHome() {
+      window.location.href = 'home.html';
+      return false;
+    }
+  </script>
+</body>
+
+</html>

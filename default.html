@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bio Bank</title>
+
+  <link
+    href="https://fonts.googleapis.com/icon?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Round|Material+Icons+Sharp|Material+Icons+Two+Tone"
+    rel="stylesheet" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap"
+    rel="stylesheet" />
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" />
+
+  <!-- jQuery UI CSS for datepicker -->
+  <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
+  <link rel="stylesheet" href="assets/css/style.css">
+  <script src="index.js"></script>
+
+</head>
+
+<body>
+  <nav class="navbar sticky-top navbar-expand-lg navbar-light" style="background-color: #1991c994;">
+    <div class="container-fluid">
+      <div class="mx-auto">
+        <ul class="nav nav-pills nav-fill">
+          <li class="nav-item">
+            <a class="nav-link " href="home.html">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="search.html">Search</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="todo.html">To-Do list</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="statistics.html">Statistics</a>
+          </li>
+        </ul>
+      </div>
+      <div class="d-flex ms-auto">
+        <button id="logout" class="btn btn-outline-primary">Logout</button>
+      </div>
+    </div>
+  </nav>
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item" id="bread2"></li>
+      <li class="breadcrumb-item active" aria-current="page">Library</li>
+    </ol>
+  </nav>
+  <div class="container mt-3">
+    <ul class="nav nav-tabs" id="myTab" role="tablist">
+      <li class="nav-item">
+        <a class="nav-link active" id="tab1-tab" data-toggle="tab" href="#tab1" role="tab" aria-controls="tab1"
+          aria-selected="true">Sample Inputs</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" id="tab2-tab" data-toggle="tab" href="#tab2" role="tab" aria-controls="tab2"
+          aria-selected="false">Follow-Ups</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" id="tab3-tab" data-toggle="tab" href="#tab3" role="tab" aria-controls="tab3"
+          aria-selected="false">Outsource</a>
+      </li>
+    </ul>
+
+    <div class="tab-content" id="myTabContent">
+      <div class="tab-pane fade show active" id="tab1" role="tabpanel" aria-labelledby="tab1-tab">
+
+
+        <div class="form-group ">
+          <button type="submit" class="btn btn-primary" id="addSample">Add Samples</button>
+        </div>
+        <div class="table-responsive" id="inputSampleTable" style="display: none;">
+          <form class="form-group">
+            <div class="col">
+              <label for="bioBankId">Bio Bank ID</label>
+              <input type="text" class="form-control" id="bioBankId" placeholder="Enter Bio Bank ID">
+            </div>
+            <div class="col">
+              <label for="age">Age</label>
+              <input type="number" class="form-control" id="age" placeholder="yrs">
+            </div>
+            <div class="col">
+              <label for="gender">Gender</label>
+              <select id="gender" class="form-control">
+                <option value="">Select Gender</option>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+              </select>
+            </div>
+            <div class="col">
+              <label for="sample">Sample</label>
+              <select id="sample" class="form-control" onchange="updateSampleType()">
+                <option value="">Select Sample</option>
+                <option value="Blood">Blood</option>
+                <option value="Specimen">Specimen</option>
+              </select>
+            </div>
+            <div class="col">
+              <label for="sampleType">Sample Type</label>
+              <select id="sampleType" class="form-control">
+                <option value="">Select Type</option>
+              </select>
+            </div>
+            <div class="col">
+              <label for="boxNo">Box No.</label>
+              <input type="text" class="form-control" id="boxNo" placeholder="Box No.">
+            </div>
+            <div class="col">
+              <label for="gridNo">Grid No.</label>
+              <input type="button" class="form-control" id="gridNo" onclick="popmodal()" placeholder="Grid No.">
+            </div>
+            <div class="col">
+              <button type="button" class="btn btn-success btn-sm" id="sampleEntry">Add</button>
+            </div>
+          </form>
+
+        </div>
+        <!-- Submit Button -->
+
+      </div>
+
+      <div class="tab-pane fade" id="tab2" role="tabpanel" aria-labelledby="tab2-tab">
+        <div class="row" style="justify-content:center;">
+          <div class="form-group col-xs-2 mr-2">
+            <label for="startInput">Date</label>
+            <input type="text" id="startInputFollow" class="form-control" placeholder="Select Date">
+          </div>
+
+          <div class="form-group col-xs-2 mr-2">
+            <label for="endInput">Status</label>
+            <input type="text" class="form-control" placeholder="Current Status">
+          </div>
+
+          <div class="form-group col-1">
+            <label for="searchBtn">Search</label>
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </div>
+        </div>
+      </div>
+      <div class="tab-pane fade" id="tab3" role="tabpanel" aria-labelledby="tab3-tab">
+        <div class="row" style="justify-content:center;">
+          <div class="form-group col-xs-2 mr-2">
+            <label for="startInput">Date</label>
+            <input type="text" id="startInputOutsource" class="form-control" placeholder="Select Date">
+          </div>
+
+          <div class="form-group col-xs-2 mr-2">
+            <label for="endInput">Purpose</label>
+            <input type="text" id="endInput" class="form-control" placeholder="Purpose">
+          </div>
+
+          <div class="form-group col-1">
+            <label for="searchBtn">Search</label>
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="bloodModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">Grid Box</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+
+        </div>
+
+
+        <div class="modal-body">
+          <form id="seat-info">
+
+            <div id="blood-box-container" class="seats">
+              <div class="blood-box" id="box-1">
+                <div class="status" style="margin-bottom: 10px;">
+                  <div class="item">Empty</div>
+                  <div class="item">Occupied</div>
+                  <div class="item">Outsource</div>
+                </div>
+                <input type="checkbox" name="bio_box" id="S1" />
+              </div>
+            </div>
+
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-primary" id="continuePage" onclick="handleDone()">Done</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal fade" id="specimenModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">Grid Box</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+
+        </div>
+
+
+        <div class="modal-body">
+          <form id="seat-info">
+
+            <div id="blood-box-container" class="seats">
+              <div class="specimen-box" id="box-1">
+                <div class="status" style="margin-bottom: 10px;">
+                  <div class="item">Empty</div>
+                  <div class="item">Occupied</div>
+                  <div class="item">Outsource</div>
+                </div>
+                <input type="checkbox" name="bio_box" id="P1" />
+              </div>
+            </div>
+
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-primary" id="continuePage" onclick="handleDone()">Done</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"></script>
+
+  <script>
+
+    const referrer = document.referrer;
+    const bread2 = document.getElementById('bread2');
+    const sampleInputTab = document.getElementById('tab1-tab');
+    const followUpTab = document.getElementById('tab2-tab');
+
+    if (referrer.includes('home.html')) {
+      bread2.innerHTML = '<a href="home.html">Home</a>';
+      sampleInputTab.click();
+    } else if (referrer.includes('search.html')) {
+      bread2.innerHTML = '<a href="search.html">Search</a>';
+      sampleInputTab.click();
+    } else if (referrer.includes('todo.html')) {
+      bread2.innerHTML = '<a href="todo.html">To-Do</a>';
+      followUpTab.click();
+    }
+
+    document.addEventListener("DOMContentLoaded", function () {
+      // Array to store the sample data
+      let sampleDataArray = [];
+
+      document.getElementById("addSample").addEventListener("click", function () {
+        document.getElementById("inputSampleTable").style.display = 'block';
+      });
+
+      document.getElementById("sampleEntry").addEventListener("click", function () {
+        const bioBankID = document.querySelector('input[placeholder="Enter Bio Bank ID"]').value;
+        const age = document.querySelector('input[placeholder="yrs"]').value;
+        const gender = document.querySelector('#gender').value;
+        const sample = document.querySelector('#sample').value;
+        const sampleType = document.querySelector('#sampleType').value;
+        const boxNo = document.querySelector('input[placeholder="Box No."]').value;
+        const gridNo = document.querySelector('input[placeholder="Grid No."]').value;
+
+        const sampleData = {
+          bioBankID,
+          age,
+          gender,
+          sample,
+          sampleType,
+          boxNo,
+          gridNo
+        };
+
+        sampleDataArray.push(sampleData);
+
+        console.log(sampleDataArray);
+
+        document.getElementById("inputSampleTable").style.display = 'none';
+
+        document.querySelector('input[placeholder="Enter Bio Bank ID"]').value = '';
+        document.querySelector('input[placeholder="yrs"]').value = '';
+        document.querySelector('#gender').value = '';
+        document.querySelector('#sample').value = '';
+        document.querySelector('#sampleType').value = '';
+        document.querySelector('input[placeholder="Box No."]').value = '';
+        document.querySelector('input[placeholder="Grid No."]').value = '';
+        window.location.href=referrer
+      });
+
+      document.getElementById('logout').addEventListener('click', function () {
+        window.location.href = 'login.html';
+      });
+    });
+
+    function updateSampleType() {
+      const sampleDropdown = document.getElementById('sample');
+      const sampleTypeDropdown = document.getElementById('sampleType');
+
+      sampleTypeDropdown.innerHTML = '<option value="">Select Type</option>';
+
+      if (sampleDropdown.value === 'Blood') {
+        const options = [
+          { value: 'serum', text: 'Serum' },
+          { value: 'plasma', text: 'Plasma' },
+          { value: 'buffy_coat', text: 'Buffy coat' }
+        ];
+        options.forEach(option => {
+          const optElement = document.createElement('option');
+          optElement.value = option.value;
+          optElement.text = option.text;
+          sampleTypeDropdown.appendChild(optElement);
+        });
+      } else if (sampleDropdown.value === 'Specimen') {
+        const options = [
+          { value: 'FT', text: 'FT' },
+          { value: 'FN', text: 'FN' }
+        ];
+        options.forEach(option => {
+          const optElement = document.createElement('option');
+          optElement.value = option.value;
+          optElement.text = option.text;
+          sampleTypeDropdown.appendChild(optElement);
+        });
+      }
+    }
+  </script>
+  <script>
+    let selectedSeats = [];
+
+    function popmodal() {
+      let sampleType = document.querySelector('#sample').value;
+
+      if (sampleType === "Blood") {
+        $('#bloodModalCenter').modal('show');
+        generateSeats('blood-box', 'BR');
+      } else if (sampleType === "Specimen") {
+        $('#specimenModalCenter').modal('show');
+        generateSeats('specimen-box', 'SR');
+      }
+    }
+
+    function generateSeats(containerClass, seatPrefix) {
+      let container = document.querySelector(`.${containerClass}`);
+      container.innerHTML = '';
+      selectedSeats = [];
+
+      for (let i = 0; i < 54; i++) {
+        let seatID = seatPrefix + '_' + (i + 1);
+        let booked = i >= 0 && i <= 39 ? 'booked' : '';
+
+        container.insertAdjacentHTML(
+          "beforeend",
+          `<input type="checkbox" name="seats" id="${seatID}" />` +
+          `<label for="${seatID}" class="seat ${booked}">${seatID}</label>`
+        );
+
+        document.getElementById(seatID).addEventListener('change', function () {
+          handleSeatSelection(seatID);
+        });
+      }
+    }
+
+    function handleSeatSelection(seatID) {
+      let seatIndex = selectedSeats.indexOf(seatID);
+      if (seatIndex === -1) {
+        selectedSeats.push(seatID);
+      } else {
+        selectedSeats.splice(seatIndex, 1);
+      }
+    }
+
+    function handleDone() {
+      if (selectedSeats.length > 0) {
+        // Select the input for Grid No. within the form layout
+        let gridInput = document.querySelector("input[placeholder='Grid No.']");
+        if (gridInput) {
+          gridInput.value = selectedSeats.join(', ');
+        }
+      }
+      // Close the modals
+      $('#bloodModalCenter').modal('hide');
+      $('#specimenModalCenter').modal('hide');
+    }
+
+  </script>
+
+
+</body>
+
+</html>
