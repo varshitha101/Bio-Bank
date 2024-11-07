@@ -87,10 +87,10 @@ option = {
         show: false
       },
       data: [
-        { value: 249, name: 'Invasive breast carcinoma' },
-        { value: 183, name: 'Basal cell carcinoma' },
-        { value: 94, name: 'Ductal carcinoma' },
-        { value: 60, name: 'Mixed carcinoma' }
+        { value: 249, name: 'Breast' },
+        { value: 183, name: 'Throat' },
+        { value: 94, name: 'Liver' },
+        { value: 60, name: 'Lung' }
       ]
     }
   ]
