@@ -105,11 +105,12 @@
     grid-template-columns: repeat(10, 1fr);
     grid-gap: 15px;
     position: relative;
-    
+    max-width: 800px;
     }
     .seat {
-    width: 70px;
-    height: 30px;
+      width: 60px;
+      height: 30px;
+      margin: 5px;
     margin-right: 8px;
     background: rgb(143, 218, 187);
     border-radius: 0.5mm;
@@ -134,7 +135,7 @@
     background: rgb(129, 129, 192);
     outline: none;
     }
-    .seat.booked {
+    .booked {
     background: rgb(129, 129, 192);
     outline: none;
     }
@@ -165,7 +166,13 @@
 .nav-tabs {
   border-bottom: 2px solid #1991c9;
 }
-.nav-tabs .nav-link {
+
+.nav-link {
+  color: rgb(255, 255, 255);
+  font-weight: bold;
+}
+
+.nav-tabs {
   color: #555;
   font-weight: bold;
 }
