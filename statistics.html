@@ -100,63 +100,78 @@
       </div>
     </div>
   </nav>
-
-  <div class="container">
-    <div class="row" style="justify-content:center;">
-      <div class="form-group col-xs-2 mr-2">
-        <label for="optionInput">Date</label>
-        <select id="optionInput" class="form-control">
-          <option value="select" selected>Select</option>
-          <option value="day">Day</option>
-          <option value="week">Week</option>
-          <option value="month">Month</option>
-          <option value="custom">Custom</option>
-        </select>
+  <div class="wrapper">
+    <div class="container">
+      <div class="row" style="justify-content:center;">
+        <div class="form-group col-xs-2 mr-2">
+          <label for="optionInput">Date</label>
+          <select id="optionInput" class="form-control">
+            <option value="select" selected>Select</option>
+            <option value="day">Day</option>
+            <option value="week">Week</option>
+            <option value="month">Month</option>
+            <option value="custom">Custom</option>
+          </select>
+        </div>
+        <div class="form-group col-xs-2 mr-2">
+          <label for="startInput">From</label>
+          <input type="text" id="startInput" class="form-control" placeholder="Select start date" disabled>
+        </div>
+  
+        <!-- To Date/Month Picker -->
+        <div class="form-group col-xs-2">
+          <label for="endInput">To</label>
+          <input type="text" id="endInput" class="form-control" placeholder="Select end date" disabled>
+        </div>
+  
+        <!-- Submit Button -->
+        <div class="form-group col-1">
+          <label for="searchBtn">Search</label>
+          <button type="submit" class="btn btn-primary" id="searchBtn" onclick="submit()">Submit</button>
+        </div>
       </div>
-      <div class="form-group col-xs-2 mr-2">
-        <label for="startInput">From</label>
-        <input type="text" id="startInput" class="form-control" placeholder="Select start date" disabled>
+    </div>
+  
+    <div class="row">
+      <div class="container mt-5 col-lg-6">
+        <h4 class="section-title" style="color:#0099e0; font-weight:bolder">Total Samples:586</h4>
       </div>
-
-      <!-- To Date/Month Picker -->
-      <div class="form-group col-xs-2">
-        <label for="endInput">To</label>
-        <input type="text" id="endInput" class="form-control" placeholder="Select end date" disabled>
+    </div>
+    <div class="row">
+      <div class="container mt-5 col-lg-6">
+        <h6 class="section-title">Age Segregation</h6>
+        <div id="chart1" style="width: 100%; height: 250px;"></div>
       </div>
-
-      <!-- Submit Button -->
-      <div class="form-group col-1">
-        <label for="searchBtn">Search</label>
-        <button type="submit" class="btn btn-primary" id="searchBtn" onclick="submit()">Submit</button>
+      <div class="container mt-5 col-lg-6">
+        <h6 class="section-title">Type of Cancer</h6>
+        <div id="chart2" style="width: 100%; height: 250px;"></div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="container mt-5 col-lg-6">
+        <h6 class="section-title">Procedure</h6>
+        <div id="chart3" style="width: 100%; height: 250px;"></div>
+      </div>
+      <div class="container mt-5 col-lg-6">
+        <h6 class="section-title">Sample Type</h6>
+        <div id="chart4" style="width: 100%; height: 250px;"></div>
       </div>
     </div>
   </div>
-
-  <div class="row">
-    <div class="container mt-5 col-lg-6">
-      <h4 class="section-title" style="color:#0099e0; font-weight:bolder">Total Samples:586</h4>
+  
+  <footer id="footer">
+    <div class="container footer-bottom clearfix">
+        <div class="copyright">
+            &copy; Copyright <strong><span>Samasti Health Technologies Ltd</span></strong>. All Rights Reserved
+        </div>
+        <div class="credits">
+           
+        </div>
+        <div class="version" style="float: right; font-size: 12px; color: rgb(255, 255, 255);">
+            Version 1.2.0
+        </div>
     </div>
-  </div>
-  <div class="row">
-    <div class="container mt-5 col-lg-6">
-      <h6 class="section-title">Age Segregation</h6>
-      <div id="chart1" style="width: 100%; height: 250px;"></div>
-    </div>
-    <div class="container mt-5 col-lg-6">
-      <h6 class="section-title">Type of Cancer</h6>
-      <div id="chart2" style="width: 100%; height: 250px;"></div>
-    </div>
-  </div>
-  <div class="row">
-    <div class="container mt-5 col-lg-6">
-      <h6 class="section-title">Procedure</h6>
-      <div id="chart3" style="width: 100%; height: 250px;"></div>
-    </div>
-    <div class="container mt-5 col-lg-6">
-      <h6 class="section-title">Sample Type</h6>
-      <div id="chart4" style="width: 100%; height: 250px;"></div>
-    </div>
-  </div>
+</footer>
   <script src="chart.js"></script>
   <script>
     $(document).ready(function () {
