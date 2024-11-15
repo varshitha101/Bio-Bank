@@ -42,8 +42,6 @@
       background-color: #0056b3;
       color: #fff;
     }
-
-   
   </style>
 </head>
 
@@ -71,104 +69,174 @@
       </div>
     </div>
   </nav>
-
-  <div class="container" style="margin-top: 20px;">
-    <div class="row" style="justify-content:space-around; margin-bottom: 10px;">
-      <div>
-        <a href="#collapseExample" class="radio-btn" data-toggle="collapse" role="button" aria-expanded="false"
-          aria-controls="collapseExample" id="individualSearchBtn">
-          Individual Search
-        </a>
-      </div>
-      <div>
-        <a href="#collapseExample1" class="radio-btn" data-toggle="collapse" role="button" aria-expanded="false"
-          aria-controls="collapseExample1" id="sampleSearchBtn">
-          Sample Search
-        </a>
-      </div>
-    </div>
-    <div class="collapse" id="collapseExample">
-      <div class="card card-body">
-        <form id="individualSearchForm" onsubmit="return searchPatient(event);">
-          <div class="row" style="justify-content:center;">
-            <div class="form-group col-md-2">
-              <label for="mrnInput">Patient Biobank ID</label>
-              <input type="text" class="form-control" id="mrnInput" placeholder="Enter Biobank ID" required>
-            </div>
-            <div class="form-group col-md-1">
-              <label for="searchBtn">Search</label>
-              <button type="submit" class="btn btn-primary">Submit</button>
-            </div>
-          </div>
-        </form>
-      </div>
-    </div>
-    <div class="collapse" id="collapseExample1">
-      <div class="card card-body">
-        <form id="sampleSearchForm" onsubmit="return searchSample(event);">
-          <div class="row" style="justify-content:center;">
-            <div class="form-group col-xs-2">
-              <label for="ageInput">Age</label>
-              <select id="ageInput" class="form-control">
-                <option selected>Select</option>
-                <option>All</option>
-                <option>Below 30 Yrs</option>
-                <option>30 Yrs - 40 Yrs</option>
-                <option>40 Yrs - 50 Yrs</option>
-                <option>50 Yrs - 60 Yrs</option>
-                <option>Above 60 Yrs</option>
-              </select>
-            </div>
-            <div class="form-group col-md-2">
-              <label for="cancerTypeInput">Cancer Type</label>
-              <select id="cancerTypeInput" class="form-control">
-                <option selected>Select</option>
-                <option>All</option>
-                <option>Breast Cancer</option>
-              </select>
-            </div>
-
-            <div class="form-group col-xs-2 mr-2">
-              <label for="stageInput">Stage</label>
-              <select id="stageInput" class="form-control">
-                <option selected>Select</option>
-                <option>All</option>
-                <option>Stage I</option>
-                <option>Stage II</option>
-                <option>Stage III</option>
-                <option>Stage IV</option>
-              </select>
-            </div>
-
-            <div class="form-group col-xs-2 mr-2">
-              <label for="gradeInput">Grade</label>
-              <select id="gradeInput" class="form-control">
-                <option selected>Select</option>
-                <option>All</option>
-                <option>Grade 1</option>
-                <option>Grade 2</option>
-                <option>Grade 3</option>
-              </select>
-            </div>
-            <div class="form-group col-1">
-              <label for="searchBtn">Search</label>
-              <button type="submit" class="btn btn-primary" id="sampleSubmit">Submit</button>
-            </div>
-          </div>
-        </form>
-        <div class="row" style="justify-content:center;">
-          <button type="button" id="download" class="btn btn-success" style="display: none;">Download</button>
-
+  <div class="wrapper">
+    <div class="container " style="margin-top: 20px;">
+      <div class="row" style="justify-content:space-around; margin-bottom: 10px;">
+        <div>
+          <a href="#collapseExample" class="radio-btn" data-toggle="collapse" role="button" aria-expanded="false"
+            aria-controls="collapseExample" id="individualSearchBtn">
+            Individual Search
+          </a>
+        </div>
+        <div>
+          <a href="#collapseExample1" class="radio-btn" data-toggle="collapse" role="button" aria-expanded="false"
+            aria-controls="collapseExample1" id="sampleSearchBtn">
+            Sample Search
+          </a>
         </div>
       </div>
+      <div class="collapse" id="collapseExample">
+        <div class="card card-body">
+          <form id="individualSearchForm" onsubmit="return searchPatient(event);">
+            <div class="row" style="justify-content:center;">
+              <div class="form-group col-md-2">
+                <label for="mrnInput">Patient Biobank ID</label>
+                <input type="text" class="form-control" id="mrnInput" placeholder="Enter Biobank ID" required>
+              </div>
+              <div class="form-group col-md-1">
+                <label for="searchBtn">Search</label>
+                <button type="submit" class="btn btn-primary">Submit</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="collapse" id="collapseExample1">
+        <div class="card card-body">
+          <form id="sampleSearchForm" onsubmit="return searchSample(event);">
+            <div class="row" style="justify-content:center;">
+              <div class="form-group col-xs-2">
+                <label for="ageInput">Age</label>
+                <select id="ageInput" class="form-control">
+                  <option selected>Select</option>
+                  <option>All</option>
+                  <option>Below 30 Yrs</option>
+                  <option>30 Yrs - 40 Yrs</option>
+                  <option>40 Yrs - 50 Yrs</option>
+                  <option>50 Yrs - 60 Yrs</option>
+                  <option>Above 60 Yrs</option>
+                </select>
+              </div>
+              <div class="form-group col-md-2">
+                <label for="cancerTypeInput">Cancer Type</label>
+                <select id="cancerTypeInput" class="form-control">
+                  <option selected>Select</option>
+                  <option>All</option>
+                  <option>Breast Cancer</option>
+                </select>
+              </div>
 
+              <div class="form-group col-xs-2 mr-2">
+                <label for="stageInput">Stage</label>
+                <select id="stageInput" class="form-control">
+                  <option selected>Select</option>
+                  <option>All</option>
+                  <option>Stage I</option>
+                  <option>Stage II</option>
+                  <option>Stage III</option>
+                  <option>Stage IV</option>
+                </select>
+              </div>
+
+              <div class="form-group col-xs-2 mr-2">
+                <label for="gradeInput">Grade</label>
+                <select id="gradeInput" class="form-control">
+                  <option selected>Select</option>
+                  <option>All</option>
+                  <option>Grade 1</option>
+                  <option>Grade 2</option>
+                  <option>Grade 3</option>
+                </select>
+              </div>
+              <div class="form-group col-1">
+                <label for="searchBtn">Search</label>
+                <button type="submit" class="btn btn-primary" id="sampleSubmit">Submit</button>
+              </div>
+            </div>
+          </form>
+          <div class="row" style="justify-content:center;">
+            <button type="button" id="download" class="btn btn-success" style="display: none;">Download</button>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="container my-4">
+      <div id="patientList" class="row"></div>
     </div>
   </div>
+  <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">Patient History</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
 
-  <div class="container my-4">
-    <div id="patientList" class="row"></div>
+        </div>
+
+
+        <div class="modal-body">
+          <table style="width: 100%; border-collapse: collapse; margin: 10px 0;">
+            <thead>
+              <tr>
+                <th style="border: 1px solid #ddd; padding: 8px; text-align: left; background-color: #f2f2f2;">S.No</th>
+                <th style="border: 1px solid #ddd; padding: 8px; text-align: left; background-color: #f2f2f2;">Date</th>
+                <th style="border: 1px solid #ddd; padding: 8px; text-align: left; background-color: #f2f2f2;">Time</th>
+                <th style="border: 1px solid #ddd; padding: 8px; text-align: left; background-color: #f2f2f2;">Action</th>
+
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td style="border: 1px solid #ddd; padding: 8px; text-align: left;">1</td>
+                <td style="border: 1px solid #ddd; padding: 8px; text-align: left;">08/11/2024</td>
+                <td style="border: 1px solid #ddd; padding: 8px; text-align: left;">11:30 AM</td>
+                <td style="border: 1px solid #ddd; padding: 8px; text-align: left;"> <button type="submit" class="btn btn-primary" id="continuePage"
+                    onclick="handleView()">View</button>
+                </td>
+              </tr>
+              <tr>
+                <td style="border: 1px solid #ddd; padding: 8px; text-align: left;">2</td>
+                <td style="border: 1px solid #ddd; padding: 8px; text-align: left;">06/11/2024</td>
+                <td style="border: 1px solid #ddd; padding: 8px; text-align: left;">03:30 PM</td>
+                <td style="border: 1px solid #ddd; padding: 8px; text-align: left;"> <button type="submit" class="btn btn-primary" id="continuePage"
+                    onclick="handleView()">View</button>
+                </td>
+              </tr>
+              <tr>
+                <td style="border: 1px solid #ddd; padding: 8px; text-align: left;">3</td>
+                <td style="border: 1px solid #ddd; padding: 8px; text-align: left;">28/10/2024</td>
+                <td style="border: 1px solid #ddd; padding: 8px; text-align: left;">04:30 PM</td>
+                <td style="border: 1px solid #ddd; padding: 8px; text-align: left;"> <button type="submit" class="btn btn-primary" id="continuePage"
+                    onclick="handleView()">View</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+
+      </div>
+    </div>
   </div>
+  <footer id="footer">
+    <div class="container footer-bottom clearfix">
+      <div class="copyright">
+        &copy; Copyright <strong><span>Samasti Health Technologies Ltd</span></strong>. All Rights Reserved
+      </div>
+      <div class="credits">
 
+      </div>
+      <div class="version" style="float: right; font-size: 12px; color: rgb(255, 255, 255);">
+        Version 1.2.0
+      </div>
+    </div>
+  </footer>
   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
     integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
     crossorigin="anonymous"></script>
@@ -180,34 +248,39 @@
     crossorigin="anonymous"></script>
 
   <script>
-
+    function historyModal() {
+      $('#exampleModalCenter').modal('show');
+    }
     function logout() {
       window.location.href = 'login.html';
+    }
+    function handleView(){
+      window.location.href = 'default.html';
     }
 
     let filteredPatientData = [];  // Global variable to store filtered data
 
-document.addEventListener("DOMContentLoaded", function () {
-  fetch('data.json')
-    .then(response => response.json())
-    .then(data => {
-      window.patientData = data;
-      filteredPatientData = data;  // Initially, all data is displayed
-      displayPatients(data);
-    })
-    .catch(error => {
-      console.error('Error fetching the data:', error);
+    document.addEventListener("DOMContentLoaded", function () {
+      fetch('data.json')
+        .then(response => response.json())
+        .then(data => {
+          window.patientData = data;
+          filteredPatientData = data;  // Initially, all data is displayed
+          displayPatients(data);
+        })
+        .catch(error => {
+          console.error('Error fetching the data:', error);
+        });
     });
-});
 
-function displayPatients(data) {
-  const patientList = document.getElementById('patientList');
-  patientList.innerHTML = '';
-  const table = document.createElement('table');
-  table.classList.add('table', 'table-striped', 'table-bordered');
+    function displayPatients(data) {
+      const patientList = document.getElementById('patientList');
+      patientList.innerHTML = '';
+      const table = document.createElement('table');
+      table.classList.add('table', 'table-striped', 'table-bordered');
 
-  const thead = document.createElement('thead');
-  thead.innerHTML = `
+      const thead = document.createElement('thead');
+      thead.innerHTML = `
     <tr>
       <th scope="col">S.No</th>
       <th scope="col">Patient Name</th>
@@ -222,11 +295,11 @@ function displayPatients(data) {
     </tr>
   `;
 
-  const tbody = document.createElement('tbody');
+      const tbody = document.createElement('tbody');
 
-  data.forEach((patient, index) => {
-    const row = document.createElement('tr');
-    row.innerHTML = `
+      data.forEach((patient, index) => {
+        const row = document.createElement('tr');
+        row.innerHTML = `
       <th scope="row">${index + 1}</th>
       <td>${patient.patient_name}</td>
       <td>${patient.age}</td>
@@ -238,124 +311,133 @@ function displayPatients(data) {
       <td>${patient.grade_of_cancer}</td>
     `;
 
-    const modCell = document.createElement('td');
+        const modCell = document.createElement('td');
 
-    const editBtn = document.createElement('button');
-    editBtn.classList.add('btn', 'btn-primary', 'btn-sm', 'mr-2');
-    editBtn.textContent = 'Edit';
-    editBtn.addEventListener('click', () => {
-      console.log(`Editing patient: ${patient.patient_name}`);
-      window.location.href = 'default.html';
+        const editBtn = document.createElement('button');
+        editBtn.classList.add('btn', 'btn-primary', 'btn-sm', 'mr-2');
+        editBtn.textContent = 'Edit';
+        editBtn.addEventListener('click', () => {
+          console.log(`Editing patient: ${patient.patient_name}`);
+          window.location.href = 'default.html';
+        });
+
+        const viewBtn = document.createElement('button');
+        viewBtn.classList.add('btn', 'btn-info', 'btn-sm', 'mr-2');
+        viewBtn.textContent = 'View';
+        viewBtn.addEventListener('click', () => {
+          console.log(`Viewing patient: ${patient.patient_name}`);
+          window.location.href = `default.html?hideMnrId=true`;
+        });
+        const historyBtn = document.createElement('button');
+        historyBtn.classList.add('btn', 'btn-success', 'btn-sm', 'mr-2');
+        historyBtn.textContent = 'History';
+        historyBtn.addEventListener('click', () => {
+          historyModal();
+          console.log(` patient History: ${patient.patient_name}`);
+        });
+
+        modCell.appendChild(editBtn);
+        modCell.appendChild(viewBtn);
+        modCell.appendChild(historyBtn);
+
+        row.appendChild(modCell);
+
+        tbody.appendChild(row);
+      });
+
+      table.appendChild(thead);
+      table.appendChild(tbody);
+
+      patientList.appendChild(table);
+    }
+
+    function searchPatient(event) {
+      event.preventDefault();
+
+      const mrn = document.getElementById('mrnInput').value;
+      const filteredPatients = window.patientData.filter(patient => patient.MRN_ID === mrn);
+
+      filteredPatientData = filteredPatients;
+      displayPatients(filteredPatients);
+
+    }
+
+    function searchSample(event) {
+      event.preventDefault();
+      document.getElementById("download").style.display = 'block';
+
+      const ageInput = document.getElementById('ageInput').value;
+      const cancerTypeInput = document.getElementById('cancerTypeInput').value;
+      const stageInput = document.getElementById('stageInput').value;
+      const gradeInput = document.getElementById('gradeInput').value;
+
+      const filteredPatients = window.patientData.filter(patient => {
+        const ageMatch = ageInput === 'All' || checkAgeGroup(patient.age, ageInput);
+        const cancerTypeMatch = cancerTypeInput === 'All' || patient.type_of_cancer === cancerTypeInput;
+        const stageMatch = stageInput === 'All' || patient.stage_of_cancer === stageInput;
+        const gradeMatch = gradeInput === 'All' || patient.grade_of_cancer === gradeInput;
+
+        return ageMatch && cancerTypeMatch && stageMatch && gradeMatch;
+      });
+
+      filteredPatientData = filteredPatients;
+      displayPatients(filteredPatients);
+
+    }
+
+    function checkAgeGroup(age, selectedGroup) {
+      const ageGroups = {
+        'Below 30 Yrs': age < 30,
+        '30 Yrs - 40 Yrs': age >= 30 && age <= 40,
+        '40 Yrs - 50 Yrs': age >= 40 && age <= 50,
+        '50 Yrs - 60 Yrs': age >= 50 && age <= 60,
+        'Above 60 Yrs': age > 60
+      };
+      return ageGroups[selectedGroup] || true;
+    }
+
+    // function resetFormInputs() {
+    //   document.getElementById('ageInput').value = 'Select';
+    //   document.getElementById('cancerTypeInput').value = 'Select';
+    //   document.getElementById('stageInput').value = 'Select';
+    //   document.getElementById('gradeInput').value = 'Select';
+    // }
+
+    document.getElementById('individualSearchBtn').addEventListener('click', function () {
+      const sampleSearch = document.getElementById('collapseExample1');
+      const individualSearch = document.getElementById('collapseExample');
+      individualSearchBtn.classList.add('active');
+
+      if (sampleSearch.classList.contains('show')) {
+        sampleSearch.classList.remove('show');
+        sampleSearchBtn.classList.remove('active');
+      }
     });
 
-    const viewBtn = document.createElement('button');
-    viewBtn.classList.add('btn', 'btn-info', 'btn-sm', 'mr-2');
-    viewBtn.textContent = 'View';
-    viewBtn.addEventListener('click', () => {
-      console.log(`Viewing patient: ${patient.patient_name}`);
-      window.location.href = 'default.html';
+    document.getElementById('sampleSearchBtn').addEventListener('click', function () {
+      const individualSearch = document.getElementById('collapseExample');
+      const sampleSearch = document.getElementById('collapseExample1');
+      sampleSearchBtn.classList.add('active');
+
+      if (individualSearch.classList.contains('show')) {
+        individualSearch.classList.remove('show');
+        individualSearchBtn.classList.remove('active');
+      }
     });
 
-    modCell.appendChild(editBtn);
-    modCell.appendChild(viewBtn);
-    row.appendChild(modCell);
-
-    tbody.appendChild(row);
-  });
-
-  table.appendChild(thead);
-  table.appendChild(tbody);
-
-  patientList.appendChild(table);
-}
-
-function searchPatient(event) {
-  event.preventDefault();
-
-  const mrn = document.getElementById('mrnInput').value;
-  const filteredPatients = window.patientData.filter(patient => patient.MRN_ID === mrn);
-
-  filteredPatientData = filteredPatients; 
-  displayPatients(filteredPatients);
-
-}
-
-function searchSample(event) {
-  event.preventDefault();
-  document.getElementById("download").style.display = 'block';
-
-  const ageInput = document.getElementById('ageInput').value;
-  const cancerTypeInput = document.getElementById('cancerTypeInput').value;
-  const stageInput = document.getElementById('stageInput').value;
-  const gradeInput = document.getElementById('gradeInput').value;
-
-  const filteredPatients = window.patientData.filter(patient => {
-    const ageMatch = ageInput === 'All' || checkAgeGroup(patient.age, ageInput);
-    const cancerTypeMatch = cancerTypeInput === 'All' || patient.type_of_cancer === cancerTypeInput;
-    const stageMatch = stageInput === 'All' || patient.stage_of_cancer === stageInput;
-    const gradeMatch = gradeInput === 'All' || patient.grade_of_cancer === gradeInput;
-
-    return ageMatch && cancerTypeMatch && stageMatch && gradeMatch ;
-  });
-
-  filteredPatientData = filteredPatients;
-  displayPatients(filteredPatients);
-
-}
-
-function checkAgeGroup(age, selectedGroup) {
-  const ageGroups = {
-    'Below 30 Yrs': age < 30,
-    '30 Yrs - 40 Yrs': age >= 30 && age <= 40,
-    '40 Yrs - 50 Yrs': age >= 40 && age <= 50,
-    '50 Yrs - 60 Yrs': age >= 50 && age <= 60,
-    'Above 60 Yrs': age > 60
-  };
-  return ageGroups[selectedGroup] || true;
-}
-
-// function resetFormInputs() {
-//   document.getElementById('ageInput').value = 'Select';
-//   document.getElementById('cancerTypeInput').value = 'Select';
-//   document.getElementById('stageInput').value = 'Select';
-//   document.getElementById('gradeInput').value = 'Select';
-// }
-
-document.getElementById('individualSearchBtn').addEventListener('click', function () {
-  const sampleSearch = document.getElementById('collapseExample1');
-  const individualSearch = document.getElementById('collapseExample');
-  individualSearchBtn.classList.add('active');
-
-  if (sampleSearch.classList.contains('show')) {
-    sampleSearch.classList.remove('show');
-    sampleSearchBtn.classList.remove('active');
-  }
-});
-
-document.getElementById('sampleSearchBtn').addEventListener('click', function () {
-  const individualSearch = document.getElementById('collapseExample');
-  const sampleSearch = document.getElementById('collapseExample1');
-  sampleSearchBtn.classList.add('active');
-
-  if (individualSearch.classList.contains('show')) {
-    individualSearch.classList.remove('show');
-    individualSearchBtn.classList.remove('active');
-  }
-});
 
 
+    document.getElementById('download').addEventListener('click', generateExcelData);
 
-document.getElementById('download').addEventListener('click', generateExcelData);
+    function generateExcelData() {
+      const dataToExport = filteredPatientData.length ? filteredPatientData : window.patientData;  // Export filtered data or all data if no filtering was applied
 
-function generateExcelData() {
-  const dataToExport = filteredPatientData.length ? filteredPatientData : window.patientData;  // Export filtered data or all data if no filtering was applied
+      const worksheet = XLSX.utils.json_to_sheet(dataToExport);
+      const workbook = XLSX.utils.book_new();
+      XLSX.utils.book_append_sheet(workbook, worksheet, "Patients");
 
-  const worksheet = XLSX.utils.json_to_sheet(dataToExport);
-  const workbook = XLSX.utils.book_new();
-  XLSX.utils.book_append_sheet(workbook, worksheet, "Patients");
-
-  XLSX.writeFile(workbook, "FilteredPatientData.xlsx");
-}
+      XLSX.writeFile(workbook, "FilteredPatientData.xlsx");
+    }
 
     function saveFile(blob, filename) {
       if (window.navigator.msSaveOrOpenBlob) {
