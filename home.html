@@ -62,116 +62,156 @@
   </nav>
 
 
-
-  <div class="container-fluid">
-    <div class="center">
-      <div class="bio_box" style="background-color: #1991c994;">
-        <div class="box_selector">
-          <div class="row" style="width: 400px; justify-content: space-between;">
-            <div class="head col-lg-11">
-              <div class="title">BR Blood Box - 1</div>
-            </div>
-            <div class="col-lg-1">
-              <img src="assets/images/plus-circle-s-svgrepo-com.svg" alt=""
-                style="height: 30px; width: 30px; cursor:pointer;" onclick="addBloodBox()" class="rounded-circle">
-            </div>
-          </div>
-
-          <div id="blood-box-container" class="seats">
-            <div class="blood-box" id="box-1">
-              <div class="status" style="margin-bottom: 10px;">
-                <div class="item">Empty</div>
-                <div class="item">Occupied</div>
-                <div class="item">Outsource</div>
-              </div>
-              <input type="checkbox" name="bio_box" id="S1" />
-            </div>
-          </div>
-
-          <div class="arrow-navigation" style="text-align: center;">
-            <button onclick="prevBox()" class="arrow-btn">←</button>
-            <button onclick="nextBox()" class="arrow-btn">→</button>
-          </div>
-        </div>
-      </div>
-
-      <div class="bio_box" style="background-color: #1991c994;">
-        <div class="box_selector">
-          <div class="row" style="width: 400px; justify-content: space-between;">
-            <div class="head col-lg-11">
-              <div class="title">Specimen Box - 1</div>
-            </div>
-            <div class="col-lg-1">
-              <img src="assets/images/plus-circle-s-svgrepo-com.svg" alt=""
-                style="height: 30px; width: 30px; cursor:pointer;" onclick="addBloodBox()" class="rounded-circle">
-            </div>
-          </div>
-
-          <div id="blood-box-container" class="seats">
-            <div class="specimen-box" id="box-1">
-              <div class="status" style="margin-bottom: 10px;">
-                <div class="item">Empty</div>
-                <div class="item">Occupied</div>
-                <div class="item">Outsource</div>
-              </div>
-              <input type="checkbox" name="bio_box" id="P1" />
-            </div>
-          </div>
-
-          <div class="arrow-navigation" style="text-align: center;">
-            <button onclick="prevBox()" class="arrow-btn">←</button>
-            <button onclick="nextBox()" class="arrow-btn">→</button>
-          </div>
-        </div>
-      </div>
-      
-
-    </div>
-    <div class="container mt-2" style="text-align: center; ">
-        
-        <div class="form-group" style="align-items: center;">
-          <button type="submit" class="btn btn-primary" id="continuePage" onclick="handleContinue()">Add Sample</button>
-        </div>
-    </div>
-    <!-- Modal structure -->
-    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
-      aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLongTitle">Add Sample</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-
-          </div>
-
-
-          <div class="modal-body">
-            <form id="seat-info">
-              <div class="row">
-                <div class="form-group col-12">
-                  <label for="inputState">MNR ID</label>
-                  <div class="row">
-                    <div class="col-7">
-                      <input type="text" class="form-control" id="cancer_type" placeholder="Enter MNR ID">
-                    </div>
-                    
-                  </div>
+  <div class="wrapper">
+    <div class="container-fluid">
+      <div class="center">
+        <div class="bio_box" style="background-color: #1991c994;">
+          <div class="box_selector">
+            <div class="row" style="width: 400px; height: 50px; justify-content: space-between;">
+              <div class="head col-lg-11">
+                <div class="title">
+                  <span id="box_id"></span> <!-- This will be dynamically populated -->
                 </div>
               </div>
-            </form>
+              <div class="col-lg-1">
+                <img src="assets/images/plus-circle-s-svgrepo-com.svg" alt=""
+                  style="height: 30px; width: 30px; cursor:pointer;" onclick="addBloodBox()" class="rounded-circle">
+              </div>
+            </div>
+
+            <div id="blood-box-container" class="seats">
+              <div class="blood-box" id="box-1">
+                <div class="status" style="margin-bottom: 5px;">
+                  <div class="item">Empty</div>
+                  <div class="item">Occupied</div>
+                  <div class="item">Outsource</div>
+                </div>
+                <input type="checkbox" name="bio_box" id="S1" />
+              </div>
+            </div>
+
+            <div class="arrow-navigation" style="text-align: center;">
+              <button onclick="prev1Box()" class="arrow-btn">←</button>
+              <button onclick="next1Box()" class="arrow-btn">→</button>
+            </div>
           </div>
-          <div class="modal-footer">
-            <button type="submit" class="btn btn-primary" id="continuePage" onclick="handleContinue()">Continue</button>
+
+        </div>
+
+
+        <div class="bio_box" style="background-color: #1991c994;">
+          <div class="box_selector">
+            <div class="row" style="width: 400px; height: 50px; justify-content: space-between;">
+              <div class="head col-lg-11">
+                <div class="title">
+                  <span id="sbox_id"></span>
+                </div>
+              </div>
+              <div class="col-lg-1">
+                <img src="assets/images/plus-circle-s-svgrepo-com.svg" alt=""
+                  style="height: 30px; width: 30px; cursor:pointer;" onclick="addSpecimenBox()" class="rounded-circle">
+              </div>
+            </div>
+
+            <div id="specimen-box-container" class="seats">
+              <!-- Unique ID for specimen box container -->
+              <div class="specimen-box" id="specimen-box-1">
+                <div class="status" style="margin-bottom: 5px;">
+                  <div class="item">Empty</div>
+                  <div class="item">Occupied</div>
+                  <div class="item">Outsource</div>
+                </div>
+                <input type="checkbox" name="bio_box" id="P1" />
+              </div>
+            </div>
+
+
+            <div class="arrow-navigation" style="text-align: center;">
+              <button onclick="prev2Box()" class="arrow-btn">←</button>
+              <button onclick="next2Box()" class="arrow-btn">→</button>
+            </div>
+          </div>
+        </div>
+
+
+      </div>
+      <div class="container mt-2" style="text-align: center; ">
+
+        <div class="form-group" style="align-items: center;">
+          <button type="submit" class="btn btn-primary" id="samplePage">Add Sample</button>
+        </div>
+      </div>
+      <!-- Modal structure -->
+      <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
+        aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLongTitle">Add Sample</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+
+            </div>
+
+
+            <div class="modal-body">
+              <form id="seat-info">
+                <div class="row">
+                  <div class="form-group col-12">
+                    <label for="inputState">MRN ID</label>
+                    <div class="row">
+                      <div class="col-7">
+                        <input type="text" class="form-control" id="cancer_type" placeholder="Enter MRN ID">
+                      </div>
+
+                    </div>
+                  </div>
+                </div>
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button type="submit" class="btn btn-primary" id="continuePage"
+                onclick="handleContinue()">Continue</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal fade" id="CreationModalCenter" tabindex="-1" role="dialog"
+        aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+
+
+
+            <div class="modal-body">
+              <p>Added New Box</p>
+            </div>
+
           </div>
         </div>
       </div>
     </div>
   </div>
-  <script>
 
-    function handleContinue(){
+  <footer id="footer" style="margin-bottom: -30px;">
+    <div class="container footer-bottom clearfix">
+      <div class="copyright">
+        &copy; Copyright <strong><span>Samasti Health Technologies Ltd</span></strong>. All Rights Reserved
+      </div>
+      <div class="credits">
+
+      </div>
+      <div class="version" style="float: right; font-size: 12px; color: rgb(255, 255, 255);">
+        Version 1.2.0
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    
+
+    function handleContinue() {
       window.location.href = 'default.html';
     }
     function handleSubmit() {
