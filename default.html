@@ -104,22 +104,9 @@
 
           <!-- Progress Bar -->
           <div class="container">
-            <div id="progressBarContainer">
-              <div class="row" id="progressBar" style=" justify-content: space-between;">
-                <div>
-                  <img src="assets/images/dot-circle-svgrepo-com.svg"
-                    style="height: 30px; width: 30px; margin-top: -5px;" alt="">
-                </div>
-                <div>
-                  <img src="assets/images/dot-circle-svgrepo-com.svg"
-                    style="height: 30px; width: 30px; margin-top: -5px" alt="">
-                </div>
-                <div>
-                  <img src="assets/images/dot-circle-svgrepo-com.svg"
-                    style="height: 30px; width: 30px; margin-top: -5px" alt="">
-                </div>
+              <div class="progress">
+                <div class="progress-bar" role="progressbar" id="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
               </div>
-            </div>
           </div>
 
 
@@ -133,28 +120,28 @@
                 </div>
             
               <div class="row ml-1 mb-3" id="mnrId" >
-                <label for="mrnID" class="col-sm-2 mb-1 col-form-label">MRN Number</label>
+                <label for="mrnID" class="col-sm-2 mb-1 col-form-label">MRN Number <span style="color: red; font-weight: bold;">*</span> </label>
                 <div class="col-sm-10 mt-2">
-                  <input type="text" class="form-control"  placeholder="Enter MRN Number">
+                  <input type="text" class="form-control"  placeholder="Enter MRN Number" required>
                 </div>
               </div>
             
               <div class="row ml-1 mb-3">
-                <label for="bioBankId" class="col-sm-2 mb-1 col-form-label">Bio Bank ID</label>
+                <label for="bioBankId" class="col-sm-2 mb-1 col-form-label">Bio Bank ID <span style="color: red; font-weight: bold;">*</span></label>
                 <div class="col-sm-10 mt-2">
-                  <input type="text" class="form-control" id="bioBankId" placeholder="Enter Bio Bank ID">
+                  <input type="text" class="form-control" id="bioBankId" placeholder="Enter Bio Bank ID" required>
                 </div>
               </div>
             
               <div class="row ml-1 mb-3">
-                <label for="patAge" class="col-sm-2 mb-1 col-form-label">Age</label>
+                <label for="patAge" class="col-sm-2 mb-1 col-form-label">Age <span style="color: red; font-weight: bold;">*</span></label>
                 <div class="col-sm-10 mt-2">
                   <input type="number" min="0" max="100" id="patAge" class="form-control" placeholder="yrs">
                 </div>
               </div>
             
               <div class="row ml-1 mb-3">
-                <label for="gender" class="col-sm-2 mb-1 col-form-label">Gender</label>
+                <label for="gender" class="col-sm-2 mb-1 col-form-label">Gender <span style="color: red; font-weight: bold;">*</span></label>
                 <div class="col-sm-10 mt-2">
                   <div class="custom-control custom-radio custom-control-inline">
                     <input type="radio" id="radioMale" name="customRadio" class="custom-control-input">
@@ -168,10 +155,10 @@
               </div>
             
               <div class="row ml-1 mb-3">
-                <label for="cancer_type" class="col-sm-2 mb-1 col-form-label">Cancer Type</label>
+                <label for="cancer_type" class="col-sm-2 mb-1 col-form-label">Cancer Type <span style="color: red; font-weight: bold;">*</span></label>
                 <div class="col-sm-10 mt-2">
                   <div class="custom-control custom-radio custom-control-inline">
-                    <input type="radio" id="customRadio1" name="radioCancerType" class="custom-control-input">
+                    <input type="radio" id="customRadio1" name="radioCancerType" class="custom-control-input" required>
                     <label class="custom-control-label" for="customRadio1">Breast Cancer</label>
                   </div>
                   <!-- <div class="custom-control custom-radio custom-control-inline">
@@ -190,14 +177,14 @@
               </div>
             
               <div class="row ml-1 mb-3">
-                <label for="procedure" class="col-sm-2 mb-1 col-form-label">Procedure Types</label>
+                <label for="procedure" class="col-sm-2 mb-1 col-form-label">Procedure Types <span style="color: red; font-weight: bold;">*</span></label>
                 <div class="col-sm-10 mt-2">
                   <div class="custom-control custom-radio custom-control-inline">
-                    <input type="radio" id="radioProcedure1" name="customProcedure" class="custom-control-input">
+                    <input type="radio" id="radioProcedure1" name="customProcedure" class="custom-control-input" required>
                     <label class="custom-control-label" for="radioProcedure1">Biopsy</label>
                   </div>
                   <div class="custom-control custom-radio custom-control-inline">
-                    <input type="radio" id="radioProcedure2" name="customProcedure" class="custom-control-input">
+                    <input type="radio" id="radioProcedure2" name="customProcedure" class="custom-control-input" required>
                     <label class="custom-control-label" for="radioProcedure2">Resection</label>
                   </div>
                 </div>
@@ -224,34 +211,34 @@
               </div> -->
 
               <div class="row ml-1 mb-3">
-                <label for="bloodsample" class="col-sm-2 mb-1 col-form-label">Blood Sample</label>
+                <label for="bloodsample" class="col-sm-2 mb-1 col-form-label">Blood Sample <span style="color: red; font-weight: bold;">*</span></label>
                 <div class="col-sm-10 mt-2">
                   <div class="custom-control custom-radio custom-control-inline">
-                    <input type="radio" id="bloodSampleY" name="bloodSample" class="custom-control-input">
+                    <input type="radio" id="bloodSampleY" name="bloodSample" class="custom-control-input" required>
                     <label class="custom-control-label" for="bloodSampleY">Yes</label>
                   </div>
                   <div class="custom-control custom-radio custom-control-inline">
-                    <input type="radio" id="bloodSampleN" name="bloodSample" class="custom-control-input">
+                    <input type="radio" id="bloodSampleN" name="bloodSample" class="custom-control-input" required>
                     <label class="custom-control-label" for="bloodSampleN">No</label>
                   </div>
                 </div>
               </div>
               <div class="row ml-1 mb-3">
-                <label for="specimensample" class="col-sm-2 mb-1 col-form-label">Specimen Sample</label>
+                <label for="specimensample" class="col-sm-2 mb-1 col-form-label">Specimen Sample <span style="color: red; font-weight: bold;">*</span></label>
                 <div class="col-sm-10 mt-2">
                   <div class="custom-control custom-radio custom-control-inline">
-                    <input type="radio" id="specimenSampleY" name="specimenSample" class="custom-control-input">
+                    <input type="radio" id="specimenSampleY" name="specimenSample" class="custom-control-input" required>
                     <label class="custom-control-label" for="specimenSampleY">Yes</label>
                   </div>
                   <div class="custom-control custom-radio custom-control-inline">
-                    <input type="radio" id="specimenSampleN" name="specimenSample" class="custom-control-input">
+                    <input type="radio" id="specimenSampleN" name="specimenSample" class="custom-control-input" required>
                     <label class="custom-control-label" for="specimenSampleN">No</label>
                   </div>
                 </div>
               </div>
             
               <div class="row ml-1 mb-3" id="countFttubes" style="display: none;">
-                <label for="ft_tubes" class="col-sm-2 mb-1 col-form-label">No of FT Tubes</label>
+                <label for="ft_tubes" class="col-sm-2 mb-1 col-form-label">No of FT Tubes <span style="color: red; font-weight: bold;">*</span></label>
                 <div class="col-sm-10 mt-2">
                   <select id="ft_tubes" class="form-control">
                     <option value="">Select</option>
@@ -269,13 +256,13 @@
                 </div>
               </div>
               <div class="row ml-1 mb-3" id="fttubes" style="display: none;">
-                <label for="gridNo" class="col-sm-2 mb-1 col-form-label">FT Tubes Grids</label>
+                <label for="gridNo" class="col-sm-2 mb-1 col-form-label">FT Tubes Grids <span style="color: red; font-weight: bold;">*</span></label>
                 <div class="col-sm-10 mt-2">
                   <input type="button" class="form-control" id="ftgrid" onclick="popFTmodal()" placeholder="FT Grid No.">
                 </div>
               </div>
               <div class="row ml-1 mb-3" id="countFntubes" style="display: none;">
-                <label for="fn_tubes" class="col-sm-2 mb-1 col-form-label">No of FN Tubes</label>
+                <label for="fn_tubes" class="col-sm-2 mb-1 col-form-label">No of FN Tubes <span style="color: red; font-weight: bold;">*</span></label>
                 <div class="col-sm-10 mt-2">
                   <select id="fn_tubes" class="form-control">
                     <option value="">Select</option>
@@ -293,20 +280,20 @@
                 </div>
               </div>
               <div class="row ml-1 mb-3" id="fntubes" style="display: none;">
-                <label for="gridNo" class="col-sm-2 mb-1 col-form-label">FN Tubes Grids</label>
+                <label for="gridNo" class="col-sm-2 mb-1 col-form-label">FN Tubes Grids <span style="color: red; font-weight: bold;">*</span></label>
                 <div class="col-sm-10 mt-2">
                   <input type="button" class="form-control" id="fngrid" onclick="popFNmodal()" placeholder="FN Grid No.">
                 </div>
               </div>
               <div class="row ml-1 mb-3" id="plasmatubes" style="display: none;">
-                <label for="PlasmagridNo" class="col-sm-2 mb-1 col-form-label">Plasma Grid</label>
+                <label for="PlasmagridNo" class="col-sm-2 mb-1 col-form-label">Plasma Grid <span style="color: red; font-weight: bold;">*</span></label>
                 <div class="col-sm-10 mt-2">
                   <input type="button" class="form-control" id="PlasmagridNo" onclick="popPlasmamodal()"
                   placeholder="Plasma Grid">
                 </div>
               </div>
               <div class="row ml-1 mb-3" id="serumtubes" style="display: none;">
-                <label for="SerumgridNo" class="col-sm-2 mb-1 col-form-label">Serum Grid</label>
+                <label for="SerumgridNo" class="col-sm-2 mb-1 col-form-label">Serum Grid <span style="color: red; font-weight: bold;">*</span></label>
                 <div class="col-sm-10 mt-2">
                   <input type="button" class="form-control" id="SerumgridNo" onclick="popSerummodal()"
                   placeholder="Serum Grid">
@@ -314,7 +301,7 @@
                 
               </div>
               <div class="row ml-1 mb-3" id="bufferCoatTubes" style="display: none;">
-                <label for="bufferCoatgridNo" class="col-sm-2 mb-1 col-form-label">Buffer Coat Grid</label>
+                <label for="bufferCoatgridNo" class="col-sm-2 mb-1 col-form-label">Buffer Coat Grid <span style="color: red; font-weight: bold;">*</span></label>
                 <div class="col-sm-10 mt-2">
                   <input type="button" class="form-control" id="bufferCoatgridNo" onclick="popBuffermodal()"
                   placeholder="Buffer Grid">
@@ -334,7 +321,7 @@
                 </div>
               </div>
               <div class="row ml-1 mb-3">
-                <label for="ischemic" class="col-sm-2 mb-1 col-form-label">Ischemic Sample</label>
+                <label for="ischemic" class="col-sm-2 mb-1 col-form-label">Ischemic Sample <span style="color: red; font-weight: bold;">*</span></label>
                 <div class="col-sm-10 mt-2">
                   <div class="custom-control custom-radio custom-control-inline">
                     <input type="radio" id="radioIschemic1" name="customRadio" class="custom-control-input">
@@ -347,37 +334,37 @@
                 </div>
               </div>
               <div class="row ml-1 mb-3">
-                <label for="boxNo" class="col-sm-2 mb-1 col-form-label">Processed By</label>
+                <label for="boxNo" class="col-sm-2 mb-1 col-form-label">Processed By <span style="color: red; font-weight: bold;">*</span></label>
                 <div class="col-sm-10 mt-2">
                   <input type="text" class="form-control" id="processedBy" placeholder="">
                 </div>
               </div>
 
               <div class="row ml-1 mb-3">
-                <label for="date" class="col-sm-2 mb-1 col-form-label"> Received Time</label>
+                <label for="date" class="col-sm-2 mb-1 col-form-label"> Received Time <span style="color: red; font-weight: bold;">*</span></label>
                 <div class="col-sm-10 mt-2">
                   <div class="row">
                     
                     <div class="col-sm-6">
-                      <input type="date" class="form-control" id="sampleReceivedTime" placeholder="Select Date">
+                      <input type="date" class="form-control" id="sampleReceivedTime" placeholder="Select Date" required>
                     </div>
                     <div class="col-sm-6">
-                      <input type="time" class="form-control" id="sampleReceivedTime" placeholder="Select Date">
+                      <input type="time" class="form-control" id="sampleReceivedTime" placeholder="Select Date" required>
                     </div>
                   </div>
                 </div>
               </div>
 
               <div class="row ml-1 mb-3">
-                <label for="date" class="col-sm-2 mb-1 col-form-label">Processed Time</label>
+                <label for="date" class="col-sm-2 mb-1 col-form-label">Processed Time <span style="color: red; font-weight: bold;">*</span></label>
                 <div class="col-sm-10 mt-2">
                   <div class="row">
                     
                     <div class="col-sm-6">
-                      <input type="date" class="form-control" id="sampleProcessedTime" placeholder="Select Date">
+                      <input type="date" class="form-control" id="sampleProcessedTime" placeholder="Select Date" required>
                     </div>
                     <div class="col-sm-6">
-                      <input type="time" class="form-control" id="sampleProcessedTime" placeholder="Select Date">
+                      <input type="time" class="form-control" id="sampleProcessedTime" placeholder="Select Date" required>
                     </div>
                   </div>
                 </div>
@@ -964,7 +951,7 @@
           <form class="form-group mt-3">
             <div class="form-check pl-2">
               <div class="row ml-1 mb-3">
-                <label class="col-sm-2 col-form-label Bold" for="">Last Followup status</label>
+                <label class="col-sm-2 col-form-label Bold" for="">Last Followup status <span style="color: red; font-weight: bold;">*</span></label>
                 <div class="col-sm-10 mt-2">
                   <div class="custom-control custom-radio">
                     <input class="custom-control-input" type="radio" name="flexRadioDefault" id="radioDisease">
@@ -1039,7 +1026,7 @@
               </div>
 
               <div class="row ml-1 mb-3">
-                <label class="col-sm-2 col-form-label Bold">Vital Status</label>
+                <label class="col-sm-2 col-form-label Bold">Vital Status <span style="color: red; font-weight: bold;">*</span></label>
                 <div class="col-sm-10 mt-2">
                   <div class="custom-control custom-radio custom-control-inline">
                     <input class="custom-control-input" type="radio" name="livestatus" id="radioAlive">
@@ -1080,20 +1067,20 @@
 
           <form class="form-group mt-3">
             <div class="row ml-1 mb-3">
-              <label for="startInput" class="col-sm-2 mb-1 col-form-label col-form-label Bold">Date</label>
+              <label for="startInput" class="col-sm-2 mb-1 col-form-label col-form-label Bold">Date <span style="color: red; font-weight: bold;">*</span></label>
               <div class="col-sm-10 mt-2">
                 <input type="text" id="startInputOutsource" class="form-control" placeholder="Select Date">
               </div>
             </div>
             <div class="row ml-1 mb-3">
               <label for="startInput" class="col-sm-2 mb-1 col-form-label col-form-label Bold">Institute /
-                Department</label>
+                Department <span style="color: red; font-weight: bold;">*</span></label>
               <div class="col-sm-10 mt-2">
                 <input type="text" class="form-control " placeholder="Name of the Institite / Department">
               </div>
             </div>
             <div class="row ml-1 mb-3">
-              <label for="startInput" class="col-sm-2 mb-1 col-form-label col-form-label Bold">Project</label>
+              <label for="startInput" class="col-sm-2 mb-1 col-form-label col-form-label Bold">Project <span style="color: red; font-weight: bold;">*</span>  </label>
               <div class="col-sm-10 mt-2">
                 <input type="text" class="form-control " placeholder="Name the project">
               </div>
@@ -1772,23 +1759,28 @@
       // Hide form1 and show form2
       document.getElementById("form1").style.display = "none";
       document.getElementById("form2").style.display = "block";
+      document.getElementById("progressbar").style.width = "33.33%"
+
     });
 
     document.getElementById("nextButton2").addEventListener("click", function () {
       // Hide form2 and show form3
       document.getElementById("form2").style.display = "none";
       document.getElementById("form3").style.display = "block";
+      document.getElementById("progressbar").style.width = "66.66%"
     });
 
     document.getElementById("backButton1").addEventListener("click", function () {
       document.getElementById("form2").style.display = "none";
       document.getElementById("form1").style.display = "block";
+      document.getElementById("progressbar").style.width = "0%"
     });
 
     // Back button from form3 to form2
     document.getElementById("backButton2").addEventListener("click", function () {
       document.getElementById("form3").style.display = "none";
       document.getElementById("form2").style.display = "block";
+      document.getElementById("progressbar").style.width = "33.33%"
     });
   </script>
 
